@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {fetchGoals} from '../../services/httpUtils';
 import {GoalsChart} from "./goals-chart";
 import {GoalsTable} from "./goals-table";
+import AddGoalForm from "./add-goal-form";
 
 export const GoalsScreen = () => {
   const [goals, setGoals] = useState([]);
@@ -19,7 +20,8 @@ export const GoalsScreen = () => {
     <>
       <h1>Goals</h1>
       <GoalsChart goals={goals} />
-      <GoalsTable goals={goals} />
+      <GoalsTable goals={goals} onDelete={fetchAndSetGoals}/>
+      <AddGoalForm onSuccess={fetchAndSetGoals}/>
     </>
   );
 };

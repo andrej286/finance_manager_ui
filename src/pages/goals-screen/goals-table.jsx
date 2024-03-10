@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import styled from "styled-components";
+import {deleteGoal} from "../../services/httpUtils";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -43,26 +44,34 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const GoalsTable = ({ goals }) => {
+export const GoalsTable = ({ goals, onDelete }) => {
+
+  const handleDeleteGoal = useCallback(async (id) => {
+    await deleteGoal(id)
+    onDelete()
+  }, []);
+
   return (
     <StyledTable>
       <thead>
       <StyledTableRow>
-        <StyledTableHeader>Type</StyledTableHeader>
         <StyledTableHeader>Cost</StyledTableHeader>
         <StyledTableHeader>Date of Occurrence</StyledTableHeader>
         <StyledTableHeader>Description</StyledTableHeader>
         <StyledTableHeader>Type</StyledTableHeader>
+        <StyledTableHeader>Action</StyledTableHeader>
       </StyledTableRow>
       </thead>
       <tbody>
       {goals.map((goal) => (
         <StyledTableRow key={goal.id}>
-          <StyledTableCell>{goal.type}</StyledTableCell>
           <StyledTableCell>{goal.cost}</StyledTableCell>
           <StyledTableCell>{goal.dateOfOccurrence}</StyledTableCell>
           <StyledTableCell>{goal.description}</StyledTableCell>
           <StyledTableCell>{goal.goalType}</StyledTableCell>
+          <StyledTableCell>
+            <button onClick={() => handleDeleteGoal(goal.id)}>Delete</button>
+          </StyledTableCell>
         </StyledTableRow>
       ))}
       </tbody>
