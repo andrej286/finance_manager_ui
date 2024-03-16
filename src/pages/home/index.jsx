@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {Link} from "react-router-dom";
 import {fetchIncomes} from "../../services/httpUtils";
+import {getMonthlyTotal} from "./util";
 
 export const Home = () => {
   const [incomes, setIncomes] = useState([]);
@@ -15,14 +16,10 @@ export const Home = () => {
     fetchAndSetIncome();
   }, []);
 
-  console.log('here are the incomes: ', incomes)
-  // TODO: 3/10/2024: create an array here
-  console.log('here are the incomes edited: ', incomes)
-
   const settings = {
     series: [{
       name: "Savings",
-      data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+      data: getMonthlyTotal(incomes)
     }],
     options: {
       chart: {
@@ -49,7 +46,7 @@ export const Home = () => {
         },
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       }
     },
   };
