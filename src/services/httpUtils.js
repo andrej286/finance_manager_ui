@@ -15,6 +15,11 @@ export const fetchGoals = async () => {
   return response.data;
 };
 
+export const fetchIncomes = async () => {
+  const response = await apiService.get('/incomes');
+  return response.data;
+};
+
 export const createGoal = async (goal) => {
   await apiService.post('/goals', goal);
 };
