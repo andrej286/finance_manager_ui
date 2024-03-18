@@ -20,12 +20,25 @@ export const fetchIncomes = async () => {
   return response.data;
 };
 
+export const fetchCosts = async () => {
+  const response = await apiService.get('/costs');
+  return response.data;
+};
+
 export const createGoal = async (goal) => {
   await apiService.post('/goals', goal);
 };
 
+export const createCost = async (cost) => {
+  await apiService.post('/costs', cost);
+};
+
 export const deleteGoal = async (id) => {
   await apiService.delete(`/goals/${id}`);
+};
+
+export const deleteCost = async (id) => {
+  await apiService.delete(`/costs/${id}`);
 };
 
 export default apiService;
