@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import styled from "styled-components";
-import {deleteCost} from "../../services/httpUtils";
+import {deleteIncome} from "../../services/httpUtils";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -44,10 +44,10 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const CostsTable = ({ costs, onDelete }) => {
+export const IncomesTable = ({ incomes, onDelete }) => {
 
-  const handleDeleteCost = useCallback(async (id) => {
-    await deleteCost(id)
+  const handleDeleteIncome = useCallback(async (id) => {
+    await deleteIncome(id)
     onDelete()
   }, [onDelete]);
 
@@ -55,22 +55,22 @@ export const CostsTable = ({ costs, onDelete }) => {
     <StyledTable>
       <thead>
       <StyledTableRow>
-        <StyledTableHeader>Amount</StyledTableHeader>
-        <StyledTableHeader>Type</StyledTableHeader>
-        <StyledTableHeader>Date of payment</StyledTableHeader>
-        <StyledTableHeader>Description</StyledTableHeader>
+        <StyledTableHeader>Annual Monthly Value</StyledTableHeader>
+        <StyledTableHeader>Date of Occurrence</StyledTableHeader>
+        <StyledTableHeader>Date of Termination</StyledTableHeader>
+        <StyledTableHeader>Interest Rate</StyledTableHeader>
         <StyledTableHeader>Action</StyledTableHeader>
       </StyledTableRow>
       </thead>
       <tbody>
-      {costs.map((cost) => (
-        <StyledTableRow key={cost.id}>
-          <StyledTableCell>{cost.amount}</StyledTableCell>
-          <StyledTableCell>{cost.costType}</StyledTableCell>
-          <StyledTableCell>{cost.dateOfPayment}</StyledTableCell>
-          <StyledTableCell>{cost.description}</StyledTableCell>
+      {incomes.map((income) => (
+        <StyledTableRow key={income.id}>
+          <StyledTableCell>{income.annualMonthlyValue}</StyledTableCell>
+          <StyledTableCell>{income.startDate}</StyledTableCell>
+          <StyledTableCell>{income.terminationDate}</StyledTableCell>
+          <StyledTableCell>{income.interestRate}</StyledTableCell>
           <StyledTableCell>
-            <button onClick={() => handleDeleteCost(cost.id)}>Delete</button>
+            <button onClick={() => handleDeleteIncome(income.id)}>Delete</button>
           </StyledTableCell>
         </StyledTableRow>
       ))}

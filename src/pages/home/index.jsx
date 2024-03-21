@@ -57,6 +57,8 @@ export const Home = () => {
       <Link to="/goals">See goals screen</Link>
       <br/>
       <Link to="/costs">See costs screen</Link>
+      <br/>
+      <Link to="/incomes">See incomes screen</Link>
       <div id="chart">
         <ReactApexChart options={settings.options} series={settings.series} type="line" height={350} />
       </div>
