@@ -14,6 +14,10 @@ const AddIncomeForm = ({ onSuccess }) => {
       render={({ handleSubmit }) => (
         <form onSubmit={handleSubmit}>
           <div>
+            <label>Name:</label>
+            <Field name="name" component="input" type="text" />
+          </div>
+          <div>
             <label>Annual Monthly Value:</label>
             <Field name="annualMonthlyValue" component="input" type="number" />
           </div>

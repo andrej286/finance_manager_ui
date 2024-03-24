@@ -8,75 +8,57 @@ const IncomesChart = ({incomes}) => {
 
   const filteredIncomes = incomes.filter(
     (income) =>
-      new Date(income.startDate).getFullYear() < currentYear &&
-      new Date(income.terminationDate).getFullYear() > currentYear
+      new Date(income.startDate).getFullYear() <= currentYear &&
+      (new Date(income.terminationDate).getFullYear() > currentYear ||
+        (new Date(income.terminationDate).getFullYear() === currentYear &&
+          new Date(income.terminationDate).getMonth() >= currentMonth)
+           || !income.terminationDate)
   );
 
-  incomes.forEach((income) => {
-    const startDate = new Date(income.startDate);
-    if (startDate.getFullYear() === currentYear && startDate.getMonth() < currentMonth) {
-      const remainingMonths = 12 - currentMonth;
-      const value = income.annualMonthlyValue * remainingMonths;
-      filteredIncomes.push({
-        ...income,
-        annualMonthlyValue: value,
-      });
-    }
-  });
-
-  const series = [
-    {
+  const settings  = {
+    series: [{
       name: 'Income',
-      data: filteredIncomes.map((income) => ({
-        x: income.startDate,
-        y: income.annualMonthlyValue,
-      })),
-    },
-  ];
-
-  const options = {
-    chart: {
-      height: 350,
-      type: 'bar',
-    },
-    plotOptions: {
-      bar: {
-        horizontal: false,
-        columnWidth: '55%',
-        endingShape: 'rounded',
+      data: filteredIncomes.map(income => income.annualMonthlyValue)
+    }],
+    options: {
+      chart: {
+        type: 'bar',
+        height: 350
       },
-    },
-    dataLabels: {
-      enabled: false,
-    },
-    stroke: {
-      show: true,
-      width: 2,
-      colors: ['transparent'],
-    },
-    xaxis: {
-      type: 'datetime',
-      labels: {
-        datetimeFormatter: {
-          year: 'yyyy',
-          month: 'MMM yyyy',
-          day: 'dd MMM',
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: '55%',
+          endingShape: 'rounded'
         },
       },
-    },
-    yaxis: {
-      title: {
-        text: 'Value',
+      dataLabels: {
+        enabled: false
       },
-    },
-    fill: {
-      opacity: 1,
-    },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ['transparent']
+      },
+      colors: ['#00e396'],
+      xaxis: {
+        categories: filteredIncomes.map(income => income.name),
+      },
+      yaxis: {
+        title: {
+          text: 'Value'
+        }
+      },
+      fill: {
+        opacity: 1
+      },
+    }
   };
+
 
   return (
     <div id="chart">
-      <ReactApexChart options={options} series={series} type="bar" height={350} />
+      <ReactApexChart options={settings.options} series={settings.series} type="bar" height={350} />
     </div>
   );
 };

@@ -55,6 +55,7 @@ export const IncomesTable = ({ incomes, onDelete }) => {
     <StyledTable>
       <thead>
       <StyledTableRow>
+        <StyledTableHeader>Name of Income</StyledTableHeader>
         <StyledTableHeader>Annual Monthly Value</StyledTableHeader>
         <StyledTableHeader>Date of Occurrence</StyledTableHeader>
         <StyledTableHeader>Date of Termination</StyledTableHeader>
@@ -65,6 +66,7 @@ export const IncomesTable = ({ incomes, onDelete }) => {
       <tbody>
       {incomes.map((income) => (
         <StyledTableRow key={income.id}>
+          <StyledTableCell>{income.name}</StyledTableCell>
           <StyledTableCell>{income.annualMonthlyValue}</StyledTableCell>
           <StyledTableCell>{income.startDate}</StyledTableCell>
           <StyledTableCell>{income.terminationDate}</StyledTableCell>
