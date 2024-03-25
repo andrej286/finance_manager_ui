@@ -1,6 +1,6 @@
 import React, {useCallback} from 'react';
 import styled from "styled-components";
-import {deleteIncome} from "../../services/httpUtils";
+import {deleteIncome} from "../../api/http-utils/incomes";
 
 const StyledTable = styled.table`
   border-collapse: collapse;

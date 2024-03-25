@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import {createIncome} from '../../services/httpUtils';
+import {createIncome} from "../../api/http-utils/incomes";
 
 const AddIncomeForm = ({ onSuccess }) => {
   const handleSubmit = async (values) => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import { createGoal } from '../../services/httpUtils';
+import {createGoal} from "../../api/http-utils/goals";
 
 const goalTypes = [
   'TRAVEL',

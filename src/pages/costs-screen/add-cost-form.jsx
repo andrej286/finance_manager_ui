@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, Field } from 'react-final-form';
-import {createCost} from '../../services/httpUtils';
+import {createCost} from "../../api/http-utils/costs";
 
 const costTypes = [
   'ONE_TIME',

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {fetchGoals} from '../../services/httpUtils';
 import {GoalsChart} from "./goals-chart";
 import {GoalsTable} from "./goals-table";
 import AddGoalForm from "./add-goal-form";
+import {fetchGoals} from "../../api/http-utils/goals";
 
 export const GoalsScreen = () => {
   const [goals, setGoals] = useState([]);

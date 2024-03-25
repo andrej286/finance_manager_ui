@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {fetchIncomes} from '../../services/httpUtils';
 import {IncomesTable} from "./incomes-table";
 import AddIncomeForm from "./add-income-form";
 import IncomesChart from "./incomes-chart";
+import {fetchIncomes} from "../../api/http-utils/incomes";
 
 export const IncomesScreen = () => {
   const [incomes, setIncomes] = useState([]);

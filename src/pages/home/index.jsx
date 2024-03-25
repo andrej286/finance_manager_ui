@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {Link} from "react-router-dom";
-import {fetchIncomes} from "../../services/httpUtils";
 import {getMonthlyTotal} from "./util";
+import {fetchIncomes} from "../../api/http-utils/incomes";
 
 export const Home = () => {
   const [incomes, setIncomes] = useState([]);

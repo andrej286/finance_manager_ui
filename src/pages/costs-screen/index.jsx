@@ -1,8 +1,8 @@
 import React, {useEffect, useState}  from 'react';
-import {fetchCosts} from "../../services/httpUtils";
 import {CostsTable} from "./costs-table";
 import AddCostForm from "./add-cost-form";
 import {CostsChart} from "./costs-chart";
+import {fetchCosts} from "../../api/http-utils/costs";
 
 export const CostsScreen = () => {
   const [costs, setCosts] = useState([]);
