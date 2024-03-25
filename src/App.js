@@ -4,6 +4,7 @@ import StartScreen from "./pages/start-screen";
 import {GoalsScreen} from "./pages/goals-screen";
 import {CostsScreen} from "./pages/costs-screen";
 import {IncomesScreen} from "./pages/incomes-screen";
+import {AssetsScreen} from "./pages/assets-screen";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path="/goals" element={<GoalsScreen/>}/>
         <Route path="/costs" element={<CostsScreen/>}/>
         <Route path="/incomes" element={<IncomesScreen/>}/>
+        <Route path="/assets" element={<AssetsScreen/>}/>
       </Routes>
     </BrowserRouter>
   );
