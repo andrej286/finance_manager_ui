@@ -44,9 +44,8 @@ export const Home = () => {
     },
   };
 
-  const fetchAndSetIncome = async (token) => {
-    const data = await fetchIncomes(token);
-    console.log('this is the data from the fetchAndSetIncome : ', data)
+  const fetchAndSetIncome = async () => {
+    const data = await fetchIncomes();
     setIncomes(data);
   };
 
@@ -54,14 +53,15 @@ export const Home = () => {
     const params = new URLSearchParams(location.search);
     const code = params.get('code');
 
-    console.log('this is the code from the home component : ', code)
-
-    if (code) {
+    if ( localStorage.getItem("accessToken") ) {
+      fetchAndSetIncome()
+    }
+    else if (code) {
       fetchAccessToken(code)
         .then((response) => {
           const token = response.token;
-          console.log('this is the response from the fetchAccessToken : ', response)
-          fetchAndSetIncome(token)
+          localStorage.setItem("accessToken", token);
+          fetchAndSetIncome()
         });
     }
   }, [location.search]);
