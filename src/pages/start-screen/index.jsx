@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
+import {fetchAuthUrl} from "../../api/http-utils/auth";
 
 const Container = styled.div`
   display: flex;
@@ -35,11 +36,25 @@ const GetStartedLink = styled(Link)`
 `;
 
 const StartScreen = () => {
+  const [authUrl, setAuthUrl] = useState();
+
+  const fetchAndSetAuthUrl = async () => {
+    const data = await fetchAuthUrl();
+    setAuthUrl(data.authURL);
+  };
+
+  useEffect(() => {
+    fetchAndSetAuthUrl();
+  }, []);
+
+  console.log('this is the authUrl : ', authUrl);
+
   return (
     <Container>
       <Title>Welcome to Financial Tools</Title>
       <Description>Manage your finances and track your expenses with ease.</Description>
       <GetStartedLink to="/home">Get Started</GetStartedLink>
+      <a href={authUrl}>Login with Google</a>
     </Container>
   );
 };

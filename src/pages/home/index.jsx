@@ -1,20 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import ReactApexChart from 'react-apexcharts';
-import {Link} from "react-router-dom";
-import {getMonthlyTotal} from "./util";
+import { Link, useLocation} from "react-router-dom";
+import {fetchAccessToken} from "../../api/http-utils/auth";
 import {fetchIncomes} from "../../api/http-utils/incomes";
+import ReactApexChart from 'react-apexcharts';
+import {getMonthlyTotal} from "./util";
 
 export const Home = () => {
+  const location = useLocation();
   const [incomes, setIncomes] = useState([]);
-
-  const fetchAndSetIncome = async () => {
-    const data = await fetchIncomes();
-    setIncomes(data);
-  };
-
-  useEffect(() => {
-    fetchAndSetIncome();
-  }, []);
 
   const settings = {
     series: [{
@@ -50,6 +43,28 @@ export const Home = () => {
       }
     },
   };
+
+  const fetchAndSetIncome = async (token) => {
+    const data = await fetchIncomes(token);
+    console.log('this is the data from the fetchAndSetIncome : ', data)
+    setIncomes(data);
+  };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const code = params.get('code');
+
+    console.log('this is the code from the home component : ', code)
+
+    if (code) {
+      fetchAccessToken(code)
+        .then((response) => {
+          const token = response.token;
+          console.log('this is the response from the fetchAccessToken : ', response)
+          fetchAndSetIncome(token)
+        });
+    }
+  }, [location.search]);
 
   return (
     <>
