@@ -4,6 +4,7 @@ import {fetchAccessToken} from "../../api/http-utils/auth";
 import {fetchIncomes} from "../../api/http-utils/incomes";
 import ReactApexChart from 'react-apexcharts';
 import {getMonthlyTotal} from "./util";
+import {FinanceNavbar} from "../../components/finance-navbar";
 
 export const Home = () => {
   const location = useLocation();
@@ -68,14 +69,7 @@ export const Home = () => {
 
   return (
     <>
-      <h1>Home</h1>
-      <Link to="/goals">See goals screen</Link>
-      <br/>
-      <Link to="/costs">See costs screen</Link>
-      <br/>
-      <Link to="/incomes">See incomes screen</Link>
-      <br/>
-      <Link to="/assets">See assets screen</Link>
+      <FinanceNavbar/>
       <div id="chart">
         <ReactApexChart options={settings.options} series={settings.series} type="line" height={350} />
       </div>
