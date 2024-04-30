@@ -1,42 +1,106 @@
-import React from 'react';
-import { Form, Field } from 'react-final-form';
-import {createIncome} from "../../api/http-utils/incomes";
+import React, { useState } from 'react';
+import { Button, Modal, Form } from 'react-bootstrap';
+import { createIncome } from "../../api/http-utils/incomes";
 
 const AddIncomeForm = ({ onSuccess }) => {
-  const handleSubmit = async (values) => {
+  const [show, setShow] = useState(false);
+  const [values, setValues] = useState({
+    name: '',
+    annualMonthlyValue: '',
+    startDate: '',
+    terminationDate: '',
+    interestRate: '',
+  });
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
     await createIncome(values);
-    onSuccess()
+    onSuccess();
+    handleClose();
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Name:</label>
-            <Field name="name" component="input" type="text" />
-          </div>
-          <div>
-            <label>Annual Monthly Value:</label>
-            <Field name="annualMonthlyValue" component="input" type="number" />
-          </div>
-          <div>
-            <label>Start Date:</label>
-            <Field name="startDate" component="input" type="date" />
-          </div>
-          <div>
-            <label>Termination Date:</label>
-            <Field name="terminationDate" component="input" type="date" />
-          </div>
-          <div>
-            <label>Interest Rate:</label>
-            <Field name="interestRate" component="input" type="number" />
-          </div>
-          <button type="submit">Add Income</button>
-        </form>
-      )}
-    />
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Create Income
+      </Button>
+
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Income form</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="name">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="annualMonthlyValue">
+              <Form.Label>Annual Monthly Value:</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter value"
+                name="annualMonthlyValue"
+                value={values.annualMonthlyValue}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="startDate">
+              <Form.Label>Start Date:</Form.Label>
+              <Form.Control
+                type="date"
+                name="startDate"
+                value={values.startDate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="terminationDate">
+              <Form.Label>Termination Date:</Form.Label>
+              <Form.Control
+                type="date"
+                name="terminationDate"
+                value={values.terminationDate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="interestRate">
+              <Form.Label>Interest Rate:</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter interest rate"
+                name="interestRate"
+                value={values.interestRate}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 

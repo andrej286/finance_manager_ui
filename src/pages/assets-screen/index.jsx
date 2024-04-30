@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {fetchAssets} from "../../api/http-utils/assets";
 import {AssetsTable} from "./assets-table";
 import AddAssetForm from "./add-asset-form";
+import {FinanceNavbar} from "../../components/finance-navbar";
 
 export const AssetsScreen = () => {
   const [assets, setAssets] = useState([]);
@@ -17,6 +18,7 @@ export const AssetsScreen = () => {
 
   return (
     <>
+      <FinanceNavbar/>
       <h1>Assets</h1>
       {/*<CostsChart costs={costs} />*/}
       <AssetsTable assets={assets} onDelete={fetchAndSetAssets}/>

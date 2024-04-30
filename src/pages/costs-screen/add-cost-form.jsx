@@ -1,50 +1,101 @@
-import React from 'react';
-import { Form, Field } from 'react-final-form';
-import {createCost} from "../../api/http-utils/costs";
+import React, { useState } from 'react';
+import { Modal, Button, Form } from 'react-bootstrap';
+import { createCost } from '../../api/http-utils/costs';
 
-const costTypes = [
-  'ONE_TIME',
-  'MONTHLY',
-  'YEARLY',
-];
+const costTypes = ['ONE_TIME', 'MONTHLY', 'YEARLY'];
 
 const AddCostForm = ({ onSuccess }) => {
-  const handleSubmit = async (values) => {
+  const [show, setShow] = useState(false);
+  const [values, setValues] = useState({
+    costType: '',
+    amount: '',
+    dateOfPayment: '',
+    description: '',
+  });
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
+    });
+  };
+
+  const handleSubmit = async () => {
     await createCost(values);
-    onSuccess()
+    onSuccess();
+    handleClose();
   };
 
   return (
-    <Form
-      onSubmit={handleSubmit}
-      render={({ handleSubmit }) => (
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>Type:</label>
-            <Field name="costType" component="select">
-              {costTypes.map((type) => (
-                <option key={type} value={type}>
-                  {type}
-                </option>
-              ))}
-            </Field>
-          </div>
-          <div>
-            <label>Amount:</label>
-            <Field name="amount" component="input" type="number" />
-          </div>
-          <div>
-            <label>Date of Payment:</label>
-            <Field name="dateOfPayment" component="input" type="date" />
-          </div>
-          <div>
-            <label>Description:</label>
-            <Field name="description" component="textarea" />
-          </div>
-          <button type="submit">Add Cost</button>
-        </form>
-      )}
-    />
+    <>
+      <Button variant="primary" onClick={handleShow}>
+        Create Cost
+      </Button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Cost form</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="costType">
+              <Form.Label>Type:</Form.Label>
+              <Form.Control
+                as="select"
+                name="costType"
+                value={values.costType}
+                onChange={handleChange}
+              >
+                {costTypes.map((type) => (
+                  <option key={type} value={type}>
+                    {type}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="amount">
+              <Form.Label>Amount:</Form.Label>
+              <Form.Control
+                type="number"
+                name="amount"
+                value={values.amount}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="dateOfPayment">
+              <Form.Label>Date of Payment:</Form.Label>
+              <Form.Control
+                type="date"
+                name="dateOfPayment"
+                value={values.dateOfPayment}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="description">
+              <Form.Label>Description:</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                name="description"
+                value={values.description}
+                onChange={handleChange}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleSubmit}>
+            Add Cost
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
   );
 };
 
