@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Container, Navbar, Nav, Button, Offcanvas} from "react-bootstrap";
+import {Container, Navbar, Nav, Button, Offcanvas, Image} from "react-bootstrap";
 import {ASSETS_PAGE, COSTS_PAGE, GOALS_PAGE, HOME_PAGE, INCOMES_PAGE} from "../routes";
 
 export const FinanceNavbar = () => {
@@ -11,7 +11,10 @@ export const FinanceNavbar = () => {
   return (
     <Navbar bg="primary" variant="dark" data-bs-theme="dark">
       <Container>
-        <Navbar.Brand href={HOME_PAGE.path}>Financial Manager</Navbar.Brand>
+        <Navbar.Brand href={HOME_PAGE.path}>
+          Financial Manager
+          <Image src="/images/piggy-bank.png" width="50" fluid />
+        </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href={HOME_PAGE.path}>Home</Nav.Link>
           <Nav.Link href={GOALS_PAGE.path}>Goals</Nav.Link>
