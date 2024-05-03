@@ -24,7 +24,7 @@ export const FinanceNavbar = () => {
         </Nav>
         <>
           <Button variant="primary" onClick={handleShow} className="me-2">
-            User icon here
+            <Image src="/images/user.svg" width="30" fluid className="bg-white" roundedCircle />
           </Button>
           <Offcanvas show={show} onHide={handleClose} placement={"end"} name={"end"}>
             <Offcanvas.Header closeButton>
