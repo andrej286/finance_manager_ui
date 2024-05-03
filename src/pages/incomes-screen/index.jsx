@@ -22,7 +22,7 @@ export const IncomesScreen = () => {
       <FinanceNavbar/>
       <h1>Incomes</h1>
       <IncomesChart incomes={incomes} />
-      <IncomesTable incomes={incomes} onDelete={fetchAndSetIncomes}/>
+      <IncomesTable incomes={incomes} onSuccess={fetchAndSetIncomes}/>
       <AddIncomeForm onSuccess={fetchAndSetIncomes}/>
     </>
   );

@@ -1,6 +1,7 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
-import {deleteIncome} from "../../api/http-utils/incomes";
+import {deleteIncome, updateIncome} from "../../api/http-utils/incomes";
+import {Button, Form, Modal} from "react-bootstrap";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -44,14 +45,42 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const IncomesTable = ({ incomes, onDelete }) => {
+export const IncomesTable = ({ incomes, onSuccess }) => {
+
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedIncome, setSelectedIncome] = useState(null);
 
   const handleDeleteIncome = useCallback(async (id) => {
     await deleteIncome(id)
-    onDelete()
-  }, [onDelete]);
+    onSuccess()
+  }, [onSuccess]);
+
+  const handleEditIncome = (income) => {
+    setSelectedIncome(income);
+    setShowEditModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSelectedIncome({
+      ...selectedIncome,
+      [name]: value,
+    });
+  };
+
+  const handleCloseEditModal = () => {
+    setSelectedIncome(null);
+    setShowEditModal(false);
+  };
+
+  const handleSubmitEditModal = async () => {
+    await updateIncome(selectedIncome.id, selectedIncome);
+    onSuccess();
+    handleCloseEditModal();
+  };
 
   return (
+    <>
     <StyledTable>
       <thead>
       <StyledTableRow>
@@ -72,11 +101,79 @@ export const IncomesTable = ({ incomes, onDelete }) => {
           <StyledTableCell>{income.terminationDate}</StyledTableCell>
           <StyledTableCell>{income.interestRate}</StyledTableCell>
           <StyledTableCell>
-            <button onClick={() => handleDeleteIncome(income.id)}>Delete</button>
+            <Button variant="primary" onClick={() => handleEditIncome(income)}>
+              Edit
+            </Button>
+            <Button onClick={() => handleDeleteIncome(income.id)}>Delete</Button>
           </StyledTableCell>
         </StyledTableRow>
       ))}
       </tbody>
     </StyledTable>
+    <Modal show={showEditModal} onHide={handleCloseEditModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>Edit Income</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {selectedIncome && (
+          <Form>
+            <Form.Group controlId="name">
+              <Form.Label>Name of Income</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={selectedIncome.name}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="annualMonthlyValue">
+              <Form.Label>Annual Monthly Value</Form.Label>
+              <Form.Control
+                type="text"
+                name="annualMonthlyValue"
+                value={selectedIncome.annualMonthlyValue}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="startDate">
+              <Form.Label>Date of Occurrence</Form.Label>
+              <Form.Control
+                type="text"
+                name="startDate"
+                value={selectedIncome.startDate}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="terminationDate">
+              <Form.Label>Date of Termination</Form.Label>
+              <Form.Control
+                type="text"
+                name="terminationDate"
+                value={selectedIncome.terminationDate}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="interestRate">
+              <Form.Label>Interest Rate</Form.Label>
+              <Form.Control
+                type="text"
+                name="interestRate"
+                value={selectedIncome.interestRate}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
+          </Form>
+        )}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseEditModal}>
+          Close
+        </Button>
+        <Button variant="primary" onClick={handleSubmitEditModal}>
+          Save Changes
+        </Button>
+      </Modal.Footer>
+    </Modal>
+    </>
   );
 };

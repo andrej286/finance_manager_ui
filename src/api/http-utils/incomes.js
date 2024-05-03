@@ -24,3 +24,11 @@ export const deleteIncome = async (id) => {
       'Authorization': "Bearer " + localStorage.getItem("accessToken")
     }});
 };
+
+export const updateIncome = async (id, updatedIncome) => {
+  await axios.put(`http://localhost:8080/api/incomes/${id}`, updatedIncome, {headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      'Authorization': "Bearer " + localStorage.getItem("accessToken")
+    }});
+};
