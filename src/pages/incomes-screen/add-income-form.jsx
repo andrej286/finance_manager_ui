@@ -6,6 +6,7 @@ const AddIncomeForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState({
     name: '',
+    description: '',
     annualMonthlyValue: '',
     startDate: '',
     terminationDate: '',
@@ -48,6 +49,16 @@ const AddIncomeForm = ({ onSuccess }) => {
                 placeholder="Enter name"
                 name="name"
                 value={values.name}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="description">
+              <Form.Label>Description:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter description"
+                name="description"
+                value={values.description}
                 onChange={handleChange}
               />
             </Form.Group>

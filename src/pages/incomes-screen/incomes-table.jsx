@@ -126,6 +126,15 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
                 onChange={handleInputChange}
               />
             </Form.Group>
+            <Form.Group controlId="description">
+              <Form.Label>Description of Income</Form.Label>
+              <Form.Control
+                type="text"
+                name="description"
+                value={selectedIncome.description}
+                onChange={handleInputChange}
+              />
+            </Form.Group>
             <Form.Group controlId="annualMonthlyValue">
               <Form.Label>Annual Monthly Value</Form.Label>
               <Form.Control
