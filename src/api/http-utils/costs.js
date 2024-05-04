@@ -24,3 +24,11 @@ export const deleteCost = async (id) => {
       'Authorization': "Bearer " + localStorage.getItem("accessToken")
     }});
 };
+
+export const updateCost = async (id, updatedCost) => {
+  await axios.put(`http://localhost:8080/api/costs/${id}`, updatedCost, {headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      'Authorization': "Bearer " + localStorage.getItem("accessToken")
+    }});
+};

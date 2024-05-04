@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createCost } from '../../api/http-utils/costs';
 
-const costTypes = ['ONE_TIME', 'MONTHLY', 'YEARLY'];
+export const costTypes = ['ONE_TIME', 'MONTHLY', 'YEARLY'];
 
 const AddCostForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState({
+    name: '',
     costType: '',
     amount: '',
     dateOfPayment: '',
@@ -33,7 +34,7 @@ const AddCostForm = ({ onSuccess }) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Create Cost
+        Add a Cost
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -42,6 +43,15 @@ const AddCostForm = ({ onSuccess }) => {
         <Modal.Body>
           <Form>
             <Form.Group controlId="costType">
+              <Form.Group controlId="name">
+                <Form.Label>Name of Cost</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  value={values.name}
+                  onChange={handleChange}
+                />
+              </Form.Group>
               <Form.Label>Type:</Form.Label>
               <Form.Control
                 as="select"

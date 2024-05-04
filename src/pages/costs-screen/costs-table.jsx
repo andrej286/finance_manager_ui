@@ -1,6 +1,8 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
-import {deleteCost} from "../../api/http-utils/costs";
+import {deleteCost, updateCost} from "../../api/http-utils/costs";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import EditCostForm from "./edit-cost-form";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -13,7 +15,7 @@ const StyledTable = styled.table`
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin: auto;
-  margin-top: 50px;
+  margin-top: 5px;
   margin-bottom: 50px;
 `;
 
@@ -44,37 +46,80 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const CostsTable = ({ costs, onDelete }) => {
+export const CostsTable = ({costs, onSuccess}) => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedCost, setSelectedCost] = useState(null);
 
   const handleDeleteCost = useCallback(async (id) => {
     await deleteCost(id)
-    onDelete()
-  }, [onDelete]);
+    onSuccess()
+  }, [onSuccess]);
+
+  const handleEditCost = (cost) => {
+    setSelectedCost(cost);
+    setShowEditModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setSelectedCost({
+      ...selectedCost,
+      [name]: value,
+    });
+  };
+
+  const handleCloseEditModal = () => {
+    setSelectedCost(null);
+    setShowEditModal(false);
+  };
+
+  const handleSubmitEditModal = async () => {
+    await updateCost(selectedCost.id, selectedCost);
+    onSuccess();
+    handleCloseEditModal();
+  };
 
   return (
-    <StyledTable>
-      <thead>
-      <StyledTableRow>
-        <StyledTableHeader>Amount</StyledTableHeader>
-        <StyledTableHeader>Type</StyledTableHeader>
-        <StyledTableHeader>Date of payment</StyledTableHeader>
-        <StyledTableHeader>Description</StyledTableHeader>
-        <StyledTableHeader>Action</StyledTableHeader>
-      </StyledTableRow>
-      </thead>
-      <tbody>
-      {costs.map((cost) => (
-        <StyledTableRow key={cost.id}>
-          <StyledTableCell>{cost.amount}</StyledTableCell>
-          <StyledTableCell>{cost.costType}</StyledTableCell>
-          <StyledTableCell>{cost.dateOfPayment}</StyledTableCell>
-          <StyledTableCell>{cost.description}</StyledTableCell>
-          <StyledTableCell>
-            <button onClick={() => handleDeleteCost(cost.id)}>Delete</button>
-          </StyledTableCell>
+    <>
+      <StyledTable>
+        <thead>
+        <StyledTableRow>
+          <StyledTableHeader>Name</StyledTableHeader>
+          <StyledTableHeader>Amount</StyledTableHeader>
+          <StyledTableHeader>Date of payment</StyledTableHeader>
+          <StyledTableHeader>Type</StyledTableHeader>
+          <StyledTableHeader>Action</StyledTableHeader>
         </StyledTableRow>
-      ))}
-      </tbody>
-    </StyledTable>
+        </thead>
+        <tbody>
+        {costs.map((cost) => (
+          <StyledTableRow key={cost.id}>
+            <StyledTableCell>
+              {cost.name}
+              {cost.description &&
+                <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{cost.description}</Tooltip>}>
+                  <span>ℹ️</span>
+                </OverlayTrigger>
+              }
+            </StyledTableCell>
+            <StyledTableCell>{cost.amount}</StyledTableCell>
+            <StyledTableCell>{cost.dateOfPayment}</StyledTableCell>
+            <StyledTableCell>{cost.costType}</StyledTableCell>
+            <StyledTableCell>
+              <Button variant="primary" onClick={() => handleEditCost(cost)}>Edit</Button>
+              <Button variant="danger" onClick={() => handleDeleteCost(cost.id)}>Delete</Button>
+            </StyledTableCell>
+          </StyledTableRow>
+        ))}
+        </tbody>
+      </StyledTable>
+      <EditCostForm
+        show={showEditModal}
+        cost={selectedCost}
+        onHide={handleCloseEditModal}
+        onChange={handleInputChange}
+        onSubmit={handleSubmitEditModal}
+      />
+    </>
   );
 };
