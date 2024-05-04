@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createGoal } from '../../api/http-utils/goals';
 
-const goalTypes = [
+export const goalTypes = [
   'TRAVEL',
   'REALESTATE',
   'CAR',
@@ -78,7 +78,7 @@ const AddGoalForm = ({ onSuccess }) => {
                 ))}
               </Form.Control>
             </Form.Group>
-            <Form.Group controlId="cost">
+            <Form.Group controlId="amount">
               <Form.Label>Amount:</Form.Label>
               <Form.Control
                 type="number"

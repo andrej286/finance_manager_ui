@@ -1,7 +1,8 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
-import {deleteGoal} from "../../api/http-utils/goals";
-import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {deleteGoal, updateGoal} from "../../api/http-utils/goals";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import EditGoalForm from "./edit-goal-form";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -45,43 +46,80 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const GoalsTable = ({ goals, onDelete }) => {
+export const GoalsTable = ({goals, onSuccess}) => {
+
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedGoal, setSelectedGoal] = useState(null);
 
   const handleDeleteGoal = useCallback(async (id) => {
     await deleteGoal(id)
-    onDelete()
-  }, [onDelete]);
+    onSuccess()
+  }, [onSuccess]);
+
+  const handleEditGoal = (goal) => {
+    setSelectedGoal(goal);
+    setShowEditModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setSelectedGoal({
+      ...selectedGoal,
+      [name]: value,
+    });
+  };
+
+  const handleCloseEditModal = () => {
+    setSelectedGoal(null);
+    setShowEditModal(false);
+  };
+
+  const handleSubmitEditModal = async () => {
+    await updateGoal(selectedGoal.id, selectedGoal);
+    onSuccess();
+    handleCloseEditModal();
+  };
 
   return (
-    <StyledTable>
-      <thead>
-      <StyledTableRow>
-        <StyledTableHeader>Name</StyledTableHeader>
-        <StyledTableHeader>Amount</StyledTableHeader>
-        <StyledTableHeader>Date of Occurrence</StyledTableHeader>
-        <StyledTableHeader>Type</StyledTableHeader>
-        <StyledTableHeader>Action</StyledTableHeader>
-      </StyledTableRow>
-      </thead>
-      <tbody>
-      {goals.map((goal) => (
-        <StyledTableRow key={goal.id}>
-          <StyledTableCell>{goal.name}
-            {goal.description &&
-              <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{goal.description}</Tooltip>}>
-                <span>ℹ️</span>
-              </OverlayTrigger>
-            }
-          </StyledTableCell>
-          <StyledTableCell>{goal.amount}</StyledTableCell>
-          <StyledTableCell>{goal.dateOfOccurrence}</StyledTableCell>
-          <StyledTableCell>{goal.goalType}</StyledTableCell>
-          <StyledTableCell>
-            <button onClick={() => handleDeleteGoal(goal.id)}>Delete</button>
-          </StyledTableCell>
+    <>
+      <StyledTable>
+        <thead>
+        <StyledTableRow>
+          <StyledTableHeader>Name</StyledTableHeader>
+          <StyledTableHeader>Amount</StyledTableHeader>
+          <StyledTableHeader>Date of Occurrence</StyledTableHeader>
+          <StyledTableHeader>Type</StyledTableHeader>
+          <StyledTableHeader>Action</StyledTableHeader>
         </StyledTableRow>
-      ))}
-      </tbody>
-    </StyledTable>
+        </thead>
+        <tbody>
+        {goals.map((goal) => (
+          <StyledTableRow key={goal.id}>
+            <StyledTableCell>{goal.name}
+              {goal.description &&
+                <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{goal.description}</Tooltip>}>
+                  <span>ℹ️</span>
+                </OverlayTrigger>
+              }
+            </StyledTableCell>
+            <StyledTableCell>{goal.amount}</StyledTableCell>
+            <StyledTableCell>{goal.dateOfOccurrence}</StyledTableCell>
+            <StyledTableCell>{goal.goalType}</StyledTableCell>
+            <StyledTableCell>
+              <Button variant="primary" onClick={() => handleEditGoal(goal)}>Edit</Button>
+              <Button variant="danger" onClick={() => handleDeleteGoal(goal.id)}>Delete</Button>
+            </StyledTableCell>
+          </StyledTableRow>
+        ))}
+        </tbody>
+      </StyledTable>
+      <EditGoalForm
+        show={showEditModal}
+        goal={selectedGoal}
+        onHide={handleCloseEditModal}
+        onChange={handleInputChange}
+        onSubmit={handleSubmitEditModal}
+      />
+    </>
   );
 };

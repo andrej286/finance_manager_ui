@@ -41,7 +41,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
             <Form.Group controlId="startDate">
               <Form.Label>Date of Occurrence</Form.Label>
               <Form.Control
-                type="text"
+                type="date"
                 name="startDate"
                 value={income.startDate}
                 onChange={onChange}
@@ -50,7 +50,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
             <Form.Group controlId="terminationDate">
               <Form.Label>Date of Termination</Form.Label>
               <Form.Control
-                type="text"
+                type="date"
                 name="terminationDate"
                 value={income.terminationDate}
                 onChange={onChange}

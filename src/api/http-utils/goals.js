@@ -24,3 +24,11 @@ export const deleteGoal = async (id) => {
       'Authorization': "Bearer " + localStorage.getItem("accessToken")
     }});
 };
+
+export const updateGoal = async (id, updatedGoal) => {
+  await axios.put(`http://localhost:8080/api/goals/${id}`, updatedGoal, {headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      'Authorization': "Bearer " + localStorage.getItem("accessToken")
+    }});
+};

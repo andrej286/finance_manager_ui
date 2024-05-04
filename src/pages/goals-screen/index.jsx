@@ -22,7 +22,7 @@ export const GoalsScreen = () => {
       <FinanceNavbar/>
       <h1>Goals</h1>
       <GoalsChart goals={goals} />
-      <GoalsTable goals={goals} onDelete={fetchAndSetGoals}/>
+      <GoalsTable goals={goals} onSuccess={fetchAndSetGoals}/>
       <AddGoalForm onSuccess={fetchAndSetGoals}/>
     </>
   );
