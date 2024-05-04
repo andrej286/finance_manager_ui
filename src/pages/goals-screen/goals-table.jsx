@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react';
 import styled from "styled-components";
 import {deleteGoal} from "../../api/http-utils/goals";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -49,15 +50,15 @@ export const GoalsTable = ({ goals, onDelete }) => {
   const handleDeleteGoal = useCallback(async (id) => {
     await deleteGoal(id)
     onDelete()
-  }, []);
+  }, [onDelete]);
 
   return (
     <StyledTable>
       <thead>
       <StyledTableRow>
-        <StyledTableHeader>Cost</StyledTableHeader>
+        <StyledTableHeader>Name</StyledTableHeader>
+        <StyledTableHeader>Amount</StyledTableHeader>
         <StyledTableHeader>Date of Occurrence</StyledTableHeader>
-        <StyledTableHeader>Description</StyledTableHeader>
         <StyledTableHeader>Type</StyledTableHeader>
         <StyledTableHeader>Action</StyledTableHeader>
       </StyledTableRow>
@@ -65,9 +66,15 @@ export const GoalsTable = ({ goals, onDelete }) => {
       <tbody>
       {goals.map((goal) => (
         <StyledTableRow key={goal.id}>
-          <StyledTableCell>{goal.cost}</StyledTableCell>
+          <StyledTableCell>{goal.name}
+            {goal.description &&
+              <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{goal.description}</Tooltip>}>
+                <span>ℹ️</span>
+              </OverlayTrigger>
+            }
+          </StyledTableCell>
+          <StyledTableCell>{goal.amount}</StyledTableCell>
           <StyledTableCell>{goal.dateOfOccurrence}</StyledTableCell>
-          <StyledTableCell>{goal.description}</StyledTableCell>
           <StyledTableCell>{goal.goalType}</StyledTableCell>
           <StyledTableCell>
             <button onClick={() => handleDeleteGoal(goal.id)}>Delete</button>

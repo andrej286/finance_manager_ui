@@ -1,7 +1,8 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteIncome, updateIncome} from "../../api/http-utils/incomes";
-import {Button, Form, Modal, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import EditIncomeForm from "./edit-income-form";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -115,79 +116,13 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
       ))}
       </tbody>
     </StyledTable>
-    <Modal show={showEditModal} onHide={handleCloseEditModal}>
-      <Modal.Header closeButton>
-        <Modal.Title>Edit Income</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        {selectedIncome && (
-          <Form>
-            <Form.Group controlId="name">
-              <Form.Label>Name of Income</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                value={selectedIncome.name}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="description">
-              <Form.Label>Description of Income</Form.Label>
-              <Form.Control
-                type="text"
-                name="description"
-                value={selectedIncome.description}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="annualMonthlyValue">
-              <Form.Label>Annual Monthly Value</Form.Label>
-              <Form.Control
-                type="text"
-                name="annualMonthlyValue"
-                value={selectedIncome.annualMonthlyValue}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="startDate">
-              <Form.Label>Date of Occurrence</Form.Label>
-              <Form.Control
-                type="text"
-                name="startDate"
-                value={selectedIncome.startDate}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="terminationDate">
-              <Form.Label>Date of Termination</Form.Label>
-              <Form.Control
-                type="text"
-                name="terminationDate"
-                value={selectedIncome.terminationDate}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-            <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate</Form.Label>
-              <Form.Control
-                type="text"
-                name="interestRate"
-                value={selectedIncome.interestRate}
-                onChange={handleInputChange}
-              />
-            </Form.Group>
-          </Form>
-        )}
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleCloseEditModal}>
-          Close
-        </Button>
-        <Button variant="primary" onClick={handleSubmitEditModal}>
-          Save Changes
-        </Button>
-      </Modal.Footer>
-    </Modal>
+    <EditIncomeForm
+      show={showEditModal}
+      income={selectedIncome}
+      onHide={handleCloseEditModal}
+      onChange={handleInputChange}
+      onSubmit={handleSubmitEditModal}
+    />
     </>
   );
 };

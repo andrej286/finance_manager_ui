@@ -7,9 +7,9 @@ export const GoalsChart = ({ goals }) => {
 
     goals.forEach((goal) => {
       if (totalCostByType[goal.goalType]) {
-        totalCostByType[goal.goalType] += goal.cost;
+        totalCostByType[goal.goalType] += goal.amount;
       } else {
-        totalCostByType[goal.goalType] = goal.cost;
+        totalCostByType[goal.goalType] = goal.amount;
       }
     });
 

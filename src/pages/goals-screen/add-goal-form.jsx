@@ -19,8 +19,9 @@ const goalTypes = [
 const AddGoalForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState({
+    name: '',
     goalType: '',
-    cost: '',
+    amount: '',
     dateOfOccurrence: '',
     description: '',
   });
@@ -53,6 +54,15 @@ const AddGoalForm = ({ onSuccess }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
+            <Form.Group controlId="name">
+              <Form.Label>Name of Goal</Form.Label>
+              <Form.Control
+                type="text"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+              />
+            </Form.Group>
             <Form.Group controlId="goalType">
               <Form.Label>Type:</Form.Label>
               <Form.Control
@@ -69,11 +79,11 @@ const AddGoalForm = ({ onSuccess }) => {
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="cost">
-              <Form.Label>Cost:</Form.Label>
+              <Form.Label>Amount:</Form.Label>
               <Form.Control
                 type="number"
-                name="cost"
-                value={values.cost}
+                name="amount"
+                value={values.amount}
                 onChange={handleChange}
               />
             </Form.Group>
