@@ -1,7 +1,7 @@
 import React, { useMemo } from 'react';
 import ReactApexChart from 'react-apexcharts';
 
-export const GoalsChart = ({ goals }) => {
+export const GoalsPieChart = ({ goals }) => {
   const calculatedTotalCostByType = useMemo(() => {
     const totalCostByType = {};
 

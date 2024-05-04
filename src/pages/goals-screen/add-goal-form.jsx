@@ -46,7 +46,7 @@ const AddGoalForm = ({ onSuccess }) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Create Goal
+        Add a Goal
       </Button>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>

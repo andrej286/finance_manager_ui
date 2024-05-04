@@ -33,7 +33,7 @@ const AddIncomeForm = ({ onSuccess }) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Create Income
+        Add an Income
       </Button>
 
       <Modal show={show} onHide={handleClose}>

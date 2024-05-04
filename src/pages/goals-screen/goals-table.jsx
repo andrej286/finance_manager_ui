@@ -15,7 +15,7 @@ const StyledTable = styled.table`
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin: auto;
-  margin-top: 50px;
+  margin-top: 5px;
   margin-bottom: 50px;
 `;
 
