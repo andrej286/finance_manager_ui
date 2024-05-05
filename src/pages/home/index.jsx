@@ -3,7 +3,7 @@ import { useLocation, Link } from 'react-router-dom';
 import { fetchAccessToken } from '../../api/http-utils/auth';
 import { FinanceNavbar } from '../../components/finance-navbar';
 import { Card, Button, Col, Container, Row } from 'react-bootstrap';
-import { EARNINGS_PAGE } from '../../routes';
+import {CAPITAL_PAGE, EARNINGS_PAGE, INVEST_PAGE} from '../../routes';
 
 const Home = () => {
   const location = useLocation();
@@ -49,7 +49,7 @@ const Home = () => {
                 <Card.Text style={{ height: '10rem' }}>
                   This can be the capital calculator(calculates the assets of a given year, accumulating)
                 </Card.Text>
-                <Link to={EARNINGS_PAGE.path}>
+                <Link to={CAPITAL_PAGE.path}>
                   <Button variant="primary">Go to Calculator</Button>
                 </Link>
               </Card.Body>
@@ -63,7 +63,7 @@ const Home = () => {
                 <Card.Text style={{ height: '10rem' }}>
                   This can be the invest calculator, similar to the earning calculator, but will be given some investing options and you can calculate the capital you will have if you invest this much now in this fund or option
                 </Card.Text>
-                <Link to={EARNINGS_PAGE.path}>
+                <Link to={INVEST_PAGE.path}>
                   <Button variant="primary">Go to Calculator</Button>
                 </Link>
               </Card.Body>

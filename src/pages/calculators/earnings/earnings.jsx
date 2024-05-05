@@ -51,6 +51,9 @@ export const Earnings = () => {
     fetchAndSetIncome()
   }, []);
 
+  // TODO: 5/5/2024 : Create an input field to indicate the starting capital(first value) that the chart should have,
+  //  add a link button to the incomes section and say go here to add more incomes, add a list(<ListGroup> from react bootstrap)
+  //  which will display the incomes that were taken into account while creating this chart, also add calculation for the interest rate
   return (
     <>
       <FinanceNavbar/>

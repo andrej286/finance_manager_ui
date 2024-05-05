@@ -1,11 +1,6 @@
 
 export const getMonthlyTotal = (incomes) => {
 
-  // TODO: 3/16/2024 : Increase by the income of the previus years from the
-  //  starting point of the user, after that subtract the costs and the goals,
-  //  add option for adding an option to enable the assets in the calculation
-  //  as the initial capital. Consider moving the calculation to the backend
-
   const monthlyTotal = Array(12).fill(0);
 
   incomes.forEach((income) => {

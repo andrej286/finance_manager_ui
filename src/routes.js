@@ -5,6 +5,8 @@ import {CostsScreen} from "./pages/costs-screen";
 import {IncomesScreen} from "./pages/incomes-screen";
 import {AssetsScreen} from "./pages/assets-screen";
 import {Earnings} from "./pages/calculators/earnings/earnings";
+import Capital from "./pages/calculators/capital/capital";
+import Invest from "./pages/calculators/invest/invest";
 
 export const START_PAGE = {
   component: <StartScreen />,
@@ -34,6 +36,14 @@ export const EARNINGS_PAGE = {
   component: <Earnings />,
   path: '/earnings'
 }
+export const CAPITAL_PAGE = {
+  component: <Capital />,
+  path: '/capital'
+}
+export const INVEST_PAGE = {
+  component: <Invest />,
+  path: '/invest'
+}
 
 export const ALL_PAGES = [
   START_PAGE,
@@ -43,4 +53,6 @@ export const ALL_PAGES = [
   INCOMES_PAGE,
   ASSETS_PAGE,
   EARNINGS_PAGE,
+  CAPITAL_PAGE,
+  INVEST_PAGE
 ]

@@ -5,8 +5,11 @@ import { createAsset } from '../../api/http-utils/assets';
 const AddAssetForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState({
+    name: '',
     description: '',
     value: '',
+    interestRate: '',
+    dateOfAcquirement: '',
   });
 
   const handleClose = () => setShow(false);
@@ -38,6 +41,16 @@ const AddAssetForm = ({ onSuccess }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
+            <Form.Group controlId="name">
+              <Form.Label>Name:</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                name="name"
+                value={values.name}
+                onChange={handleChange}
+              />
+            </Form.Group>
             <Form.Group controlId="description">
               <Form.Label>Description:</Form.Label>
               <Form.Control
@@ -54,6 +67,25 @@ const AddAssetForm = ({ onSuccess }) => {
                 type="number"
                 name="value"
                 value={values.value}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="dateOfAcquirement">
+              <Form.Label>Acquiring date:</Form.Label>
+              <Form.Control
+                type="date"
+                name="dateOfAcquirement"
+                value={values.dateOfAcquirement}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="interestRate">
+              <Form.Label>Interest Rate:</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter interest rate"
+                name="interestRate"
+                value={values.interestRate}
                 onChange={handleChange}
               />
             </Form.Group>

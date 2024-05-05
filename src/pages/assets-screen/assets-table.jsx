@@ -1,6 +1,7 @@
 import React, {useCallback} from 'react';
 import styled from "styled-components";
 import {deleteAsset} from "../../api/http-utils/assets";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -55,16 +56,27 @@ export const AssetsTable = ({ assets, onDelete }) => {
     <StyledTable>
       <thead>
       <StyledTableRow>
-        <StyledTableHeader>Description</StyledTableHeader>
+        <StyledTableHeader>Name</StyledTableHeader>
         <StyledTableHeader>Value</StyledTableHeader>
+        <StyledTableHeader>Date of Acquirement</StyledTableHeader>
+        <StyledTableHeader>Interest rate</StyledTableHeader>
         <StyledTableHeader>Action</StyledTableHeader>
       </StyledTableRow>
       </thead>
       <tbody>
       {assets.map((asset) => (
         <StyledTableRow key={asset.id}>
-          <StyledTableCell>{asset.description}</StyledTableCell>
+          <StyledTableCell>
+            {asset.name}
+            {asset.description &&
+              <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{asset.description}</Tooltip>}>
+                <span>ℹ️</span>
+              </OverlayTrigger>
+            }
+          </StyledTableCell>
           <StyledTableCell>{asset.value}</StyledTableCell>
+          <StyledTableCell>{asset.dateOfAcquirement}</StyledTableCell>
+          <StyledTableCell>{asset.interestRate}</StyledTableCell>
           <StyledTableCell>
             <button onClick={() => handleDeleteAsset(asset.id)}>Delete</button>
           </StyledTableCell>

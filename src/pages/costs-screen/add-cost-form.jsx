@@ -42,8 +42,7 @@ const AddCostForm = ({ onSuccess }) => {
         </Modal.Header>
         <Modal.Body>
           <Form>
-            <Form.Group controlId="costType">
-              <Form.Group controlId="name">
+            <Form.Group controlId="name">
                 <Form.Label>Name of Cost</Form.Label>
                 <Form.Control
                   type="text"
@@ -52,7 +51,8 @@ const AddCostForm = ({ onSuccess }) => {
                   onChange={handleChange}
                 />
               </Form.Group>
-              <Form.Label>Type:</Form.Label>
+            <Form.Group controlId="costType">
+             <Form.Label>Type:</Form.Label>
               <Form.Control
                 as="select"
                 name="costType"

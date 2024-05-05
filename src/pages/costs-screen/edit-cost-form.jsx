@@ -25,7 +25,7 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
               <Form.Label>Type:</Form.Label>
               <Form.Control
                 as="select"
-                name="goalType"
+                name="costType"
                 value={cost.costType}
                 onChange={onChange}
               >
