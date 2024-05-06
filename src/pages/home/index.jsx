@@ -47,7 +47,7 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>Capital Calculator</Card.Title>
                 <Card.Text style={{ height: '10rem' }}>
-                  This can be the capital calculator(calculates the assets of a given year, accumulating)
+                  Calculate the total capital that you will have from your assets for the next years
                 </Card.Text>
                 <Link to={CAPITAL_PAGE.path}>
                   <Button variant="primary">Go to Calculator</Button>
