@@ -13,8 +13,13 @@ const Capital = () => {
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: numberOfYears }, (_, i) => currentYear + i);
   const assetValues = years.map(year =>
-    assets.reduce((total, asset) => (new Date(asset.dateOfAcquirement).getFullYear() <= year ? total + asset.value : total), 0)
-  );
+    assets.reduce((total, asset) => {
+      const assetYear = new Date(asset.dateOfAcquirement).getFullYear();
+      const yearsSinceAcquirement = year - assetYear;
+      const interestRateMultiplier = Math.pow(1 + asset.interestRate / 100, yearsSinceAcquirement);
+      return assetYear <= year ? total + (asset.value * interestRateMultiplier) : total;
+    }, 0)
+  ).map(value => Math.round(value));
 
   const chartData = [{
     name: 'Assets',
@@ -50,7 +55,6 @@ const Capital = () => {
     fetchAndSetAssets();
   }, []);
 
-  // TODO: 6/5/2024 : Need to make calculations for the interest rate(weather positive or negative)
   return (
     <>
       <FinanceNavbar />
@@ -65,6 +69,7 @@ const Capital = () => {
           aria-describedby="inputGroup-sizing-default"
           value={numberOfYears}
           onChange={handleYearChange}
+          type="number"
         />
       </InputGroup>
       <Link to={ASSETS_PAGE.path}>

@@ -18,7 +18,7 @@ const StartScreen = () => {
     <div className="d-flex flex-column align-items-center justify-content-center vh-100 bg-primary text-white p-3">
       <Image src="/images/piggy-bank.png" fluid />
       <h1 className="my-4">Welcome to the Financial Manager</h1>
-      <p className="mb-5">Manage your finances and track your expenses with ease.</p>
+      <h5 className="mb-5">Manage your finances and track your expenses with ease</h5>
       <a href={authUrl}>
         <Button className="bg-white text-dark d-inline-flex align-items-center">
           <Image src="/images/google.svg" width="20" fluid className="me-2" />
