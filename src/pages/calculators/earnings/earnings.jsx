@@ -1,16 +1,20 @@
 import React, {useEffect, useState} from 'react';
-import {getMonthlyTotal} from "./util";
 import {fetchIncomes} from "../../../api/http-utils/incomes";
 import {FinanceNavbar} from "../../../components/finance-navbar";
 import ReactApexChart from "react-apexcharts";
+import {Button, Form, InputGroup} from "react-bootstrap";
+import {Link} from "react-router-dom";
+import {INCOMES_PAGE} from "../../../routes";
+import {calculateMonthlyValues, getNext12Months} from "./util";
 
 export const Earnings = () => {
   const [incomes, setIncomes] = useState([]);
+  const [startCapital, setStartCapital] = useState(0);
 
   const settings = {
     series: [{
       name: "Savings",
-      data: getMonthlyTotal(incomes)
+      data: calculateMonthlyValues(incomes, startCapital)
     }],
     options: {
       chart: {
@@ -32,14 +36,22 @@ export const Earnings = () => {
       },
       grid: {
         row: {
-          colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+          colors: ['#f3f3f3', 'transparent'],
           opacity: 0.5
         },
       },
       xaxis: {
-        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        categories: getNext12Months(),
+      },
+      yaxis: {
+        min: 0
       }
     },
+  };
+
+  const handleStartCapitalChange = ({target}) => {
+    const { value } = target;
+    setStartCapital(parseInt(value))
   };
 
   const fetchAndSetIncome = async () => {
@@ -51,18 +63,27 @@ export const Earnings = () => {
     fetchAndSetIncome()
   }, []);
 
-  // TODO: 5/5/2024 : Create an input field to indicate the starting capital(first value) that the chart should have,
-  //  add a link button to the incomes section and say go here to add more incomes, add a list(<ListGroup> from react bootstrap)
-  //  which will display the incomes that were taken into account while creating this chart, also add calculation for the interest rate
   return (
     <>
       <FinanceNavbar/>
       <div id="chart">
         <ReactApexChart options={settings.options} series={settings.series} type="line" height={350} />
       </div>
-      Calculates the earnings taken from the incomes for the given year or next 12 month subtracting the costs
-      <div> will have a input fields to enter the initial capital </div>
-      <div> could possibly have a small list of all the incomes and costs taken into account </div>
+      <InputGroup className="mb-3 w-25" >
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Set the starting capital
+        </InputGroup.Text>
+        <Form.Control
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          value={startCapital}
+          onChange={handleStartCapitalChange}
+          width={100}
+        />
+      </InputGroup>
+      <Link to={INCOMES_PAGE.path}>
+        <Button variant="primary">Add more Incomes here >></Button>
+      </Link>
     </>
   );
 };
