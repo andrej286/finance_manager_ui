@@ -8,7 +8,7 @@ export const calculateMonthlyValues = (incomes, startCapital) => {
     for (let month = 0; month < 12; month++) {
       const previusMonth = month > 0 ? incomeMonthlyTotal[month - 1] : 0;
 
-      if (isIncomeWithinRange(income.startDate, income.terminationDate, now, month + 1)) {
+      if (isIncomeWithinRange(income.startDate, income.terminationDate, month + 1)) {
         if (month < 12 - currentMonth) {
           incomeMonthlyTotal[month] += income.annualMonthlyValue + previusMonth;
         } else {
@@ -31,7 +31,7 @@ export const calculateMonthlyValues = (incomes, startCapital) => {
   return monthlyTotal;
 };
 
-const isIncomeWithinRange = (startDate, terminationDate, dateNow, mountIteration) => {
+const isIncomeWithinRange = (startDate, terminationDate, mountIteration) => {
   const start = new Date(startDate);
   const startMonth = start.getMonth() + 1;
   const startYear = start.getFullYear();
@@ -40,7 +40,7 @@ const isIncomeWithinRange = (startDate, terminationDate, dateNow, mountIteration
   const endMonth = end.getMonth() + 1;
   const endYear = end.getFullYear();
 
-  const current = new Date(dateNow);
+  const current = new Date();
   let currentYear = current.getFullYear();
   let currentMonth = current.getMonth() + mountIteration;
 
