@@ -61,8 +61,7 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>Invest Calculator</Card.Title>
                 <Card.Text style={{ height: '10rem' }}>
-                  This can be the invest calculator, similar to the earning calculator, but will be given some investing options and you can calculate the capital you will have if you invest this much now in this fund or option
-                </Card.Text>
+                  Estimate the potential future value of your investments with our Investment Calculator! Visualize the growth of your investments with ease, exploring optimistic, realistic, and pessimistic scenarios tailored to your financial goals.</Card.Text>
                 <Link to={INVEST_PAGE.path}>
                   <Button variant="primary">Go to Calculator</Button>
                 </Link>
