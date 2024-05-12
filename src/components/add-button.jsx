@@ -10,7 +10,7 @@ const StyledButton = styled(Button)`
 export const AddButton = ({onClick, text}) => {
   return (
     <StyledButton className="p-0 bg-white fs-6 rounded-pill border border-4" onClick={onClick} style={{borderColor: 'red'}} >
-      <Image width="22" src="/images/add-icon.svg" roundedCircle fluid className="bg-white me-2 mb-1 mt-1" />
+      <Image width="22" src="/images/add-icon.svg" roundedCircle fluid className="bg-white ms-2 me-2 mb-1 mt-1" />
       <span className="me-2 text-white align-middle">{text}</span>
     </StyledButton>
   )
