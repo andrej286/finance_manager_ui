@@ -1,8 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteIncome, updateIncome} from "../../api/http-utils/incomes";
-import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditIncomeForm from "./edit-income-form";
+import {DeleteButton} from "../../components/delete-button";
+import {EditButton} from "../../components/edit-button";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -94,7 +96,7 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
         <StyledTableHeader>Date of Occurrence</StyledTableHeader>
         <StyledTableHeader>Date of Termination</StyledTableHeader>
         <StyledTableHeader>Interest Rate</StyledTableHeader>
-        <StyledTableHeader>Action</StyledTableHeader>
+        <StyledTableHeader>Actions</StyledTableHeader>
       </StyledTableRow>
       </thead>
       <tbody>
@@ -113,8 +115,8 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
           <StyledTableCell>{formatDate(income.terminationDate)}</StyledTableCell>
           <StyledTableCell>{income.interestRate} %</StyledTableCell>
           <StyledTableCell>
-            <Button variant="primary" onClick={() => handleEditIncome(income)}>Edit</Button>
-            <Button variant="danger" onClick={() => handleDeleteIncome(income.id)}>Delete</Button>
+            <EditButton onClick={() => handleEditIncome(income)}/>
+            <DeleteButton onClick={() => handleDeleteIncome(income.id)}/>
           </StyledTableCell>
         </StyledTableRow>
       ))}

@@ -1,8 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteCost, updateCost} from "../../api/http-utils/costs";
-import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditCostForm from "./edit-cost-form";
+import {DeleteButton} from "../../components/delete-button";
+import {EditButton} from "../../components/edit-button";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -92,7 +94,7 @@ export const CostsTable = ({costs, onSuccess}) => {
           <StyledTableHeader>Amount</StyledTableHeader>
           <StyledTableHeader>Date of payment</StyledTableHeader>
           <StyledTableHeader>Type</StyledTableHeader>
-          <StyledTableHeader>Action</StyledTableHeader>
+          <StyledTableHeader>Actions</StyledTableHeader>
         </StyledTableRow>
         </thead>
         <tbody>
@@ -110,8 +112,8 @@ export const CostsTable = ({costs, onSuccess}) => {
             <StyledTableCell>{formatDate(cost.dateOfPayment)}</StyledTableCell>
             <StyledTableCell>{cost.costType}</StyledTableCell>
             <StyledTableCell>
-              <Button variant="primary" onClick={() => handleEditCost(cost)}>Edit</Button>
-              <Button variant="danger" onClick={() => handleDeleteCost(cost.id)}>Delete</Button>
+              <EditButton onClick={() => handleEditCost(cost)}/>
+              <DeleteButton onClick={() => handleDeleteCost(cost.id)}/>
             </StyledTableCell>
           </StyledTableRow>
         ))}

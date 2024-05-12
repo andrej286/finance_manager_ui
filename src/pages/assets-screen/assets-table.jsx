@@ -1,8 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteAsset, updateAsset} from "../../api/http-utils/assets";
-import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditAssetForm from "./edit-asset-form";
+import {DeleteButton} from "../../components/delete-button";
+import {EditButton} from "../../components/edit-button";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -92,7 +94,7 @@ export const AssetsTable = ({assets, onSuccess}) => {
           <StyledTableHeader>Value</StyledTableHeader>
           <StyledTableHeader>Date of Acquirement</StyledTableHeader>
           <StyledTableHeader>Interest rate</StyledTableHeader>
-          <StyledTableHeader>Action</StyledTableHeader>
+          <StyledTableHeader>Actions</StyledTableHeader>
         </StyledTableRow>
         </thead>
         <tbody>
@@ -110,8 +112,8 @@ export const AssetsTable = ({assets, onSuccess}) => {
             <StyledTableCell>{formatDate(asset.dateOfAcquirement)}</StyledTableCell>
             <StyledTableCell>{asset.interestRate} %</StyledTableCell>
             <StyledTableCell>
-              <Button variant="primary" onClick={() => handleEditAsset(asset)}>Edit</Button>
-              <Button variant="danger" onClick={() => handleDeleteAsset(asset.id)}>Delete</Button>
+              <EditButton onClick={() => handleEditAsset(asset)}/>
+              <DeleteButton onClick={() => handleDeleteAsset(asset.id)}/>
             </StyledTableCell>
           </StyledTableRow>
         ))}

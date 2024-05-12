@@ -1,8 +1,10 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteGoal, updateGoal} from "../../api/http-utils/goals";
-import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import {OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditGoalForm from "./edit-goal-form";
+import {DeleteButton} from "../../components/delete-button";
+import {EditButton} from "../../components/edit-button";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -92,7 +94,7 @@ export const GoalsTable = ({goals, onSuccess}) => {
           <StyledTableHeader>Amount</StyledTableHeader>
           <StyledTableHeader>Date of Occurrence</StyledTableHeader>
           <StyledTableHeader>Type</StyledTableHeader>
-          <StyledTableHeader>Action</StyledTableHeader>
+          <StyledTableHeader>Actions</StyledTableHeader>
         </StyledTableRow>
         </thead>
         <tbody>
@@ -109,8 +111,8 @@ export const GoalsTable = ({goals, onSuccess}) => {
             <StyledTableCell>{formatDate(goal.dateOfOccurrence)}</StyledTableCell>
             <StyledTableCell>{goal.goalType}</StyledTableCell>
             <StyledTableCell>
-              <Button variant="primary" onClick={() => handleEditGoal(goal)}>Edit</Button>
-              <Button variant="danger" onClick={() => handleDeleteGoal(goal.id)}>Delete</Button>
+              <EditButton onClick={() => handleEditGoal(goal)}/>
+              <DeleteButton onClick={() => handleDeleteGoal(goal.id)}/>
             </StyledTableCell>
           </StyledTableRow>
         ))}
