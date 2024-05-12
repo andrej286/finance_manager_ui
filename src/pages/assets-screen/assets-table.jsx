@@ -42,7 +42,7 @@ const StyledTableRow = styled.tr`
 
 const StyledTableCell = styled.td`
   background-color: #fff;
-  padding: 10px;
+  padding: 5px;
   border-bottom: 1px solid #ccc;
   font-weight: bold;
 `;

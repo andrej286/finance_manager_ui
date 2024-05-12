@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { createIncome } from "../../api/http-utils/incomes";
+import {AddButton} from "../../components/add-button";
 
 const AddIncomeForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
@@ -32,10 +33,7 @@ const AddIncomeForm = ({ onSuccess }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add an Income
-      </Button>
-
+      <AddButton onClick={handleShow} text={"Add an Income"}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Income form</Modal.Title>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createGoal } from '../../api/http-utils/goals';
+import {AddButton} from "../../components/add-button";
 
 export const goalTypes = [
   'TRAVEL',
@@ -45,9 +46,7 @@ const AddGoalForm = ({ onSuccess }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add a Goal
-      </Button>
+      <AddButton onClick={handleShow} text={"Add a Goal"}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Goal form</Modal.Title>

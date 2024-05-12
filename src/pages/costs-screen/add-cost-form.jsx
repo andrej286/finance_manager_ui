@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createCost } from '../../api/http-utils/costs';
+import {AddButton} from "../../components/add-button";
 
 export const costTypes = ['ONE_TIME', 'MONTHLY', 'YEARLY'];
 
@@ -33,9 +34,7 @@ const AddCostForm = ({ onSuccess }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add a Cost
-      </Button>
+      <AddButton onClick={handleShow} text={"Add a Cost"}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Cost form</Modal.Title>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createAsset } from '../../api/http-utils/assets';
+import {AddButton} from "../../components/add-button";
 
 const AddAssetForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
@@ -31,10 +32,7 @@ const AddAssetForm = ({ onSuccess }) => {
 
   return (
     <>
-      <Button variant="primary" onClick={handleShow}>
-        Add an Asset
-      </Button>
-
+      <AddButton onClick={handleShow} text={"Add an Asset"}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add an Asset</Modal.Title>
