@@ -1,7 +1,8 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
-import {deleteAsset} from "../../api/http-utils/assets";
-import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {deleteAsset, updateAsset} from "../../api/http-utils/assets";
+import {Button, OverlayTrigger, Tooltip} from "react-bootstrap";
+import EditAssetForm from "./edit-asset-form";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -14,7 +15,7 @@ const StyledTable = styled.table`
   overflow: hidden;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin: auto;
-  margin-top: 50px;
+  margin-top: 5px;
   margin-bottom: 50px;
 `;
 
@@ -45,44 +46,80 @@ const StyledTableCell = styled.td`
   font-weight: bold;
 `;
 
-export const AssetsTable = ({ assets, onDelete }) => {
+export const AssetsTable = ({assets, onSuccess}) => {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedAsset, setSelectedAsset] = useState(null);
 
   const handleDeleteAsset = useCallback(async (id) => {
     await deleteAsset(id)
-    onDelete()
-  }, [onDelete]);
+    onSuccess()
+  }, [onSuccess]);
+
+  const handleEditAsset = (asset) => {
+    setSelectedAsset(asset);
+    setShowEditModal(true);
+  };
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setSelectedAsset({
+      ...selectedAsset,
+      [name]: value,
+    });
+  };
+
+  const handleCloseEditModal = () => {
+    setSelectedAsset(null);
+    setShowEditModal(false);
+  };
+
+  const handleSubmitEditModal = async () => {
+    await updateAsset(selectedAsset.id, selectedAsset);
+    onSuccess();
+    handleCloseEditModal();
+  };
 
   return (
-    <StyledTable>
-      <thead>
-      <StyledTableRow>
-        <StyledTableHeader>Name</StyledTableHeader>
-        <StyledTableHeader>Value</StyledTableHeader>
-        <StyledTableHeader>Date of Acquirement</StyledTableHeader>
-        <StyledTableHeader>Interest rate</StyledTableHeader>
-        <StyledTableHeader>Action</StyledTableHeader>
-      </StyledTableRow>
-      </thead>
-      <tbody>
-      {assets.map((asset) => (
-        <StyledTableRow key={asset.id}>
-          <StyledTableCell>
-            {asset.name}
-            {asset.description &&
-              <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{asset.description}</Tooltip>}>
-                <span>ℹ️</span>
-              </OverlayTrigger>
-            }
-          </StyledTableCell>
-          <StyledTableCell>{asset.value}</StyledTableCell>
-          <StyledTableCell>{asset.dateOfAcquirement}</StyledTableCell>
-          <StyledTableCell>{asset.interestRate}</StyledTableCell>
-          <StyledTableCell>
-            <button onClick={() => handleDeleteAsset(asset.id)}>Delete</button>
-          </StyledTableCell>
+    <>
+      <StyledTable>
+        <thead>
+        <StyledTableRow>
+          <StyledTableHeader>Name</StyledTableHeader>
+          <StyledTableHeader>Value</StyledTableHeader>
+          <StyledTableHeader>Date of Acquirement</StyledTableHeader>
+          <StyledTableHeader>Interest rate</StyledTableHeader>
+          <StyledTableHeader>Action</StyledTableHeader>
         </StyledTableRow>
-      ))}
-      </tbody>
-    </StyledTable>
+        </thead>
+        <tbody>
+        {assets.map((asset) => (
+          <StyledTableRow key={asset.id}>
+            <StyledTableCell>
+              {asset.name}
+              {asset.description &&
+                <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{asset.description}</Tooltip>}>
+                  <span>ℹ️</span>
+                </OverlayTrigger>
+              }
+            </StyledTableCell>
+            <StyledTableCell>{asset.value}</StyledTableCell>
+            <StyledTableCell>{asset.dateOfAcquirement}</StyledTableCell>
+            <StyledTableCell>{asset.interestRate}</StyledTableCell>
+            <StyledTableCell>
+              <Button variant="primary" onClick={() => handleEditAsset(asset)}>Edit</Button>
+              <Button variant="danger" onClick={() => handleDeleteAsset(asset.id)}>Delete</Button>
+            </StyledTableCell>
+          </StyledTableRow>
+        ))}
+        </tbody>
+      </StyledTable>
+      <EditAssetForm
+        show={showEditModal}
+        asset={selectedAsset}
+        onHide={handleCloseEditModal}
+        onChange={handleInputChange}
+        onSubmit={handleSubmitEditModal}
+      />
+    </>
   );
 };

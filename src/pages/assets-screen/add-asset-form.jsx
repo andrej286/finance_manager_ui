@@ -32,12 +32,12 @@ const AddAssetForm = ({ onSuccess }) => {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Add Asset
+        Add an Asset
       </Button>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add Asset</Modal.Title>
+          <Modal.Title>Add an Asset</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>

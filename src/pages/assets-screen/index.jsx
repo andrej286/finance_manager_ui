@@ -21,8 +21,8 @@ export const AssetsScreen = () => {
       <FinanceNavbar/>
       <h1>Assets</h1>
       {/*<CostsChart costs={costs} />*/}
-      <AssetsTable assets={assets} onDelete={fetchAndSetAssets}/>
       <AddAssetForm onSuccess={fetchAndSetAssets}/>
+      <AssetsTable assets={assets} onSuccess={fetchAndSetAssets}/>
     </>
   );
 };

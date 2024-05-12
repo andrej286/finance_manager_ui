@@ -24,3 +24,11 @@ export const deleteAsset = async (id) => {
       'Authorization': "Bearer " + localStorage.getItem("accessToken")
     }});
 };
+
+export const updateAsset = async (id, updatedAsset) => {
+  await axios.put(`http://localhost:8080/api/assets/${id}`, updatedAsset, {headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin' : '*',
+      'Authorization': "Bearer " + localStorage.getItem("accessToken")
+    }});
+};

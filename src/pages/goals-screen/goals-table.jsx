@@ -47,7 +47,6 @@ const StyledTableCell = styled.td`
 `;
 
 export const GoalsTable = ({goals, onSuccess}) => {
-
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
 
