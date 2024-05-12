@@ -24,7 +24,6 @@ const StyledTableHeader = styled.th`
   color: #fff;
   font-weight: bold;
   padding: 10px;
-  text-transform: uppercase;
   letter-spacing: 1px;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #ccc;
@@ -79,6 +78,11 @@ export const CostsTable = ({costs, onSuccess}) => {
     handleCloseEditModal();
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
+
   return (
     <>
       <StyledTable>
@@ -102,8 +106,8 @@ export const CostsTable = ({costs, onSuccess}) => {
                 </OverlayTrigger>
               }
             </StyledTableCell>
-            <StyledTableCell>{cost.amount}</StyledTableCell>
-            <StyledTableCell>{cost.dateOfPayment}</StyledTableCell>
+            <StyledTableCell>{cost.amount} €</StyledTableCell>
+            <StyledTableCell>{formatDate(cost.dateOfPayment)}</StyledTableCell>
             <StyledTableCell>{cost.costType}</StyledTableCell>
             <StyledTableCell>
               <Button variant="primary" onClick={() => handleEditCost(cost)}>Edit</Button>

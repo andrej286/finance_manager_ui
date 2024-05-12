@@ -21,7 +21,7 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="value">
-              <Form.Label>Amount:</Form.Label>
+              <Form.Label>Value (€):</Form.Label>
               <Form.Control
                 type="number"
                 name="value"
@@ -30,7 +30,7 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate</Form.Label>
+              <Form.Label>Interest Rate (%):</Form.Label>
               <Form.Control
                 type="text"
                 name="interestRate"

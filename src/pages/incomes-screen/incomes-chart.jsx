@@ -47,6 +47,11 @@ const IncomesChart = ({incomes}) => {
       yaxis: {
         title: {
           text: 'Value'
+        },
+        labels: {
+          formatter: function (value) {
+            return value.toLocaleString('en-US', {style: 'currency', currency: 'EUR'});
+          }
         }
       },
       fill: {

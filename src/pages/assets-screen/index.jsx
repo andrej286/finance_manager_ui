@@ -3,6 +3,7 @@ import {fetchAssets} from "../../api/http-utils/assets";
 import {AssetsTable} from "./assets-table";
 import AddAssetForm from "./add-asset-form";
 import {FinanceNavbar} from "../../components/finance-navbar";
+import AssetsChart from "./assets-chart";
 
 export const AssetsScreen = () => {
   const [assets, setAssets] = useState([]);
@@ -20,7 +21,7 @@ export const AssetsScreen = () => {
     <>
       <FinanceNavbar/>
       <h1>Assets</h1>
-      {/*<CostsChart costs={costs} />*/}
+      <AssetsChart assets={assets}/>
       <AddAssetForm onSuccess={fetchAndSetAssets}/>
       <AssetsTable assets={assets} onSuccess={fetchAndSetAssets}/>
     </>

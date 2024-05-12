@@ -24,7 +24,6 @@ const StyledTableHeader = styled.th`
   color: #fff;
   font-weight: bold;
   padding: 10px;
-  text-transform: uppercase;
   letter-spacing: 1px;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #ccc;
@@ -79,6 +78,11 @@ export const GoalsTable = ({goals, onSuccess}) => {
     handleCloseEditModal();
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
+
   return (
     <>
       <StyledTable>
@@ -101,8 +105,8 @@ export const GoalsTable = ({goals, onSuccess}) => {
                 </OverlayTrigger>
               }
             </StyledTableCell>
-            <StyledTableCell>{goal.amount}</StyledTableCell>
-            <StyledTableCell>{goal.dateOfOccurrence}</StyledTableCell>
+            <StyledTableCell>{goal.amount} €</StyledTableCell>
+            <StyledTableCell>{formatDate(goal.dateOfOccurrence)}</StyledTableCell>
             <StyledTableCell>{goal.goalType}</StyledTableCell>
             <StyledTableCell>
               <Button variant="primary" onClick={() => handleEditGoal(goal)}>Edit</Button>

@@ -58,6 +58,19 @@ export const CostsChart = ({ costs }) => {
       xaxis: {
         categories: Array.from({ length: 5 }, (_, i) => currentYear + i),
       },
+      yaxis: {
+        title: {
+          text: 'Yearly costs',
+          style: {
+            fontSize: '15px'
+          }
+        },
+        labels: {
+          formatter: function (value) {
+            return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+          }
+        }
+      }
     },
   };
 

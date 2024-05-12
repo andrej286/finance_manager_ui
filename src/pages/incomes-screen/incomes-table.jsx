@@ -24,7 +24,6 @@ const StyledTableHeader = styled.th`
   color: #fff;
   font-weight: bold;
   padding: 10px;
-  text-transform: uppercase;
   letter-spacing: 1px;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #ccc;
@@ -80,6 +79,11 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
     handleCloseEditModal();
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
+
   return (
     <>
     <StyledTable>
@@ -104,10 +108,10 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
               </OverlayTrigger>
             }
           </StyledTableCell>
-          <StyledTableCell>{income.annualMonthlyValue}</StyledTableCell>
-          <StyledTableCell>{income.startDate}</StyledTableCell>
-          <StyledTableCell>{income.terminationDate}</StyledTableCell>
-          <StyledTableCell>{income.interestRate}</StyledTableCell>
+          <StyledTableCell>{income.annualMonthlyValue} €</StyledTableCell>
+          <StyledTableCell>{formatDate(income.startDate)}</StyledTableCell>
+          <StyledTableCell>{formatDate(income.terminationDate)}</StyledTableCell>
+          <StyledTableCell>{income.interestRate} %</StyledTableCell>
           <StyledTableCell>
             <Button variant="primary" onClick={() => handleEditIncome(income)}>Edit</Button>
             <Button variant="danger" onClick={() => handleDeleteIncome(income.id)}>Delete</Button>

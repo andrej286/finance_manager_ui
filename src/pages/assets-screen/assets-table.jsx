@@ -24,7 +24,6 @@ const StyledTableHeader = styled.th`
   color: #fff;
   font-weight: bold;
   padding: 10px;
-  text-transform: uppercase;
   letter-spacing: 1px;
   border-top: 1px solid #fff;
   border-bottom: 1px solid #ccc;
@@ -79,6 +78,11 @@ export const AssetsTable = ({assets, onSuccess}) => {
     handleCloseEditModal();
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString();
+  };
+
   return (
     <>
       <StyledTable>
@@ -102,9 +106,9 @@ export const AssetsTable = ({assets, onSuccess}) => {
                 </OverlayTrigger>
               }
             </StyledTableCell>
-            <StyledTableCell>{asset.value}</StyledTableCell>
-            <StyledTableCell>{asset.dateOfAcquirement}</StyledTableCell>
-            <StyledTableCell>{asset.interestRate}</StyledTableCell>
+            <StyledTableCell>{asset.value} €</StyledTableCell>
+            <StyledTableCell>{formatDate(asset.dateOfAcquirement)}</StyledTableCell>
+            <StyledTableCell>{asset.interestRate} %</StyledTableCell>
             <StyledTableCell>
               <Button variant="primary" onClick={() => handleEditAsset(asset)}>Edit</Button>
               <Button variant="danger" onClick={() => handleDeleteAsset(asset.id)}>Delete</Button>

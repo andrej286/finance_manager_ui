@@ -51,22 +51,22 @@ const AddAssetForm = ({ onSuccess }) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
-              <Form.Control
-                as="textarea"
-                rows={3}
-                name="description"
-                value={values.description}
-                onChange={handleChange}
-              />
-            </Form.Group>
             <Form.Group controlId="value">
-              <Form.Label>Value:</Form.Label>
+              <Form.Label>Value (€):</Form.Label>
               <Form.Control
                 type="number"
                 name="value"
                 value={values.value}
+                onChange={handleChange}
+              />
+            </Form.Group>
+            <Form.Group controlId="interestRate">
+              <Form.Label>Interest Rate (%):</Form.Label>
+              <Form.Control
+                type="number"
+                placeholder="Enter interest rate"
+                name="interestRate"
+                value={values.interestRate}
                 onChange={handleChange}
               />
             </Form.Group>
@@ -79,13 +79,13 @@ const AddAssetForm = ({ onSuccess }) => {
                 onChange={handleChange}
               />
             </Form.Group>
-            <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate:</Form.Label>
+            <Form.Group controlId="description">
+              <Form.Label>Description:</Form.Label>
               <Form.Control
-                type="number"
-                placeholder="Enter interest rate"
-                name="interestRate"
-                value={values.interestRate}
+                as="textarea"
+                rows={3}
+                name="description"
+                value={values.description}
                 onChange={handleChange}
               />
             </Form.Group>

@@ -44,7 +44,12 @@ export const Earnings = () => {
         categories: getNext12Months(),
       },
       yaxis: {
-        min: 0
+        min: 0,
+        labels: {
+          formatter: function (value) {
+            return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+          }
+        }
       }
     },
   };
