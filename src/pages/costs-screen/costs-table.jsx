@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteCost, updateCost} from "../../api/http-utils/costs";
-import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditCostForm from "./edit-cost-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
@@ -104,7 +104,7 @@ export const CostsTable = ({costs, onSuccess}) => {
               {cost.name}
               {cost.description &&
                 <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{cost.description}</Tooltip>}>
-                  <span>ℹ️</span>
+                  <Image width="22" src="/images/info-icon.svg" roundedCircle fluid className="ms-1"/>
                 </OverlayTrigger>
               }
             </StyledTableCell>

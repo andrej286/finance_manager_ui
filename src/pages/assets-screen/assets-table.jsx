@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteAsset, updateAsset} from "../../api/http-utils/assets";
-import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditAssetForm from "./edit-asset-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
@@ -104,7 +104,7 @@ export const AssetsTable = ({assets, onSuccess}) => {
               {asset.name}
               {asset.description &&
                 <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{asset.description}</Tooltip>}>
-                  <span>ℹ️</span>
+                  <Image width="22" src="/images/info-icon.svg" roundedCircle fluid className="ms-1"/>
                 </OverlayTrigger>
               }
             </StyledTableCell>

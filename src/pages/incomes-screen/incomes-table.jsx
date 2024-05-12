@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteIncome, updateIncome} from "../../api/http-utils/incomes";
-import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditIncomeForm from "./edit-income-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
@@ -106,7 +106,7 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
             {income.name}
             {income.description &&
               <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{income.description}</Tooltip>}>
-                <span>ℹ️</span>
+                <Image width="22" src="/images/info-icon.svg" roundedCircle fluid className="ms-1"/>
               </OverlayTrigger>
             }
           </StyledTableCell>

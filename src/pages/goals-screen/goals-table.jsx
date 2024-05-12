@@ -1,7 +1,7 @@
 import React, {useCallback, useState} from 'react';
 import styled from "styled-components";
 import {deleteGoal, updateGoal} from "../../api/http-utils/goals";
-import {OverlayTrigger, Tooltip} from "react-bootstrap";
+import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditGoalForm from "./edit-goal-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
@@ -100,10 +100,11 @@ export const GoalsTable = ({goals, onSuccess}) => {
         <tbody>
         {goals.map((goal) => (
           <StyledTableRow key={goal.id}>
-            <StyledTableCell>{goal.name}
+            <StyledTableCell>
+              {goal.name}
               {goal.description &&
                 <OverlayTrigger key="top" placement="top" overlay={<Tooltip>{goal.description}</Tooltip>}>
-                  <span>ℹ️</span>
+                  <Image width="22" src="/images/info-icon.svg" roundedCircle fluid className="ms-1"/>
                 </OverlayTrigger>
               }
             </StyledTableCell>

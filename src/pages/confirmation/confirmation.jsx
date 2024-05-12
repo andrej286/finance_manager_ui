@@ -21,8 +21,7 @@ const Confirmation = () => {
     }
   }, [location.search]);
 
-
-  return (<div>TEST</div>);
+  return (<div> </div>);
 }
 
 export default Confirmation;

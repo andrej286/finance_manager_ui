@@ -2,14 +2,20 @@ import React, {useEffect, useState} from 'react';
 import {Container, Navbar, Nav, Button, Offcanvas, Image} from "react-bootstrap";
 import {ASSETS_PAGE, COSTS_PAGE, GOALS_PAGE, HOME_PAGE, INCOMES_PAGE} from "../routes";
 import {fetchPersonInfo} from "../api/http-utils/person";
+import {useNavigate} from "react-router-dom";
 
 export const FinanceNavbar = () => {
   const [show, setShow] = useState(false);
   const [personInfo, setPersonInfo] = useState({});
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleLogOut = () => {
+    localStorage.removeItem('accessToken')
+    navigate('/');
+  }
 
   const fetchAndSetPersonInfo = async () => {
     const data = await fetchPersonInfo();
@@ -45,6 +51,8 @@ export const FinanceNavbar = () => {
             <Offcanvas.Body>
               <div>{personInfo.name}</div>
               <div>{personInfo.email}</div>
+              <br/>
+              <Button className="fs-6 align-middle" variant="danger" onClick={handleLogOut}>Log Out</Button>
             </Offcanvas.Body>
           </Offcanvas>
         </>
