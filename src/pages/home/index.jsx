@@ -1,26 +1,10 @@
-import React, { useEffect } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { fetchAccessToken } from '../../api/http-utils/auth';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import { FinanceNavbar } from '../../components/finance-navbar';
 import { Card, Button, Col, Container, Row } from 'react-bootstrap';
 import {CAPITAL_PAGE, EARNINGS_PAGE, INVEST_PAGE} from '../../routes';
 
 const Home = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const code = params.get('code');
-
-    if (localStorage.getItem('accessToken')) {
-      return;
-    } else if (code) {
-      fetchAccessToken(code).then((response) => {
-        const token = response.token;
-        localStorage.setItem('accessToken', token);
-      });
-    }
-  }, [location.search]);
 
   return (
     <>

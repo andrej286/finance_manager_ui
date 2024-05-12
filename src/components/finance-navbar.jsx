@@ -1,12 +1,24 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Container, Navbar, Nav, Button, Offcanvas, Image} from "react-bootstrap";
 import {ASSETS_PAGE, COSTS_PAGE, GOALS_PAGE, HOME_PAGE, INCOMES_PAGE} from "../routes";
+import {fetchPersonInfo} from "../api/http-utils/person";
 
 export const FinanceNavbar = () => {
   const [show, setShow] = useState(false);
+  const [personInfo, setPersonInfo] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+  const fetchAndSetPersonInfo = async () => {
+    const data = await fetchPersonInfo();
+    setPersonInfo(data);
+  };
+
+  useEffect(() => {
+    fetchAndSetPersonInfo();
+  }, []);
 
   return (
     <Navbar bg="primary" variant="dark" data-bs-theme="dark">
@@ -28,10 +40,11 @@ export const FinanceNavbar = () => {
           </Button>
           <Offcanvas show={show} onHide={handleClose} placement={"end"} name={"end"}>
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>User info here</Offcanvas.Title>
+              <Offcanvas.Title>User info</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-              Additional user info here(monthly earnings, current asset value ...)
+              <div>{personInfo.name}</div>
+              <div>{personInfo.email}</div>
             </Offcanvas.Body>
           </Offcanvas>
         </>

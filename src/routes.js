@@ -7,6 +7,7 @@ import {AssetsScreen} from "./pages/assets-screen";
 import {Earnings} from "./pages/calculators/earnings/earnings";
 import Capital from "./pages/calculators/capital/capital";
 import Invest from "./pages/calculators/invest/invest";
+import Confirmation from "./pages/confirmation/confirmation";
 
 export const START_PAGE = {
   component: <StartScreen />,
@@ -45,7 +46,13 @@ export const INVEST_PAGE = {
   path: '/invest'
 }
 
+export const CONFIRMATION_PAGE = {
+  component: <Confirmation />,
+  path: '/confirmation'
+}
+
 export const ALL_PAGES = [
+  CONFIRMATION_PAGE,
   START_PAGE,
   HOME_PAGE,
   GOALS_PAGE,
