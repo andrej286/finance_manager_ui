@@ -36,12 +36,19 @@ const Capital = () => {
     },
     yaxis: {
       title: {
-        text: 'Value'
+        text: 'Value (€)'
       },
       labels: {
         formatter: function (value) {
           return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
         }
+      }
+    },
+    title: {
+      text: 'Capital calculator',
+      align: 'center',
+      style: {
+        fontSize: '20px'
       }
     }
   };
@@ -63,7 +70,6 @@ const Capital = () => {
   return (
     <>
       <FinanceNavbar />
-      <h4>Capital calculator</h4>
       <ReactApexChart options={options} series={chartData} type="bar" height={350} />
       <InputGroup className="mb-3 w-25" >
         <InputGroup.Text id="inputGroup-sizing-default">

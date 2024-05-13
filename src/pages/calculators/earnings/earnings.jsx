@@ -30,10 +30,6 @@ export const Earnings = () => {
       stroke: {
         curve: 'straight'
       },
-      title: {
-        text: 'Income and capital',
-        align: 'left'
-      },
       grid: {
         row: {
           colors: ['#f3f3f3', 'transparent'],
@@ -44,11 +40,21 @@ export const Earnings = () => {
         categories: getNext12Months(),
       },
       yaxis: {
+        title: {
+          text: 'Value (€)'
+        },
         min: 0,
         labels: {
           formatter: function (value) {
             return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
           }
+        }
+      },
+      title: {
+        text: 'Earnings calculator',
+        align: 'center',
+        style: {
+          fontSize: '20px'
         }
       }
     },
