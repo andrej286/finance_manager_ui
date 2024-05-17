@@ -3,22 +3,10 @@ import ReactApexChart from 'react-apexcharts';
 
 const IncomesChart = ({incomes}) => {
 
-  const currentYear = new Date().getFullYear();
-  const currentMonth = new Date().getMonth();
-
-  const filteredIncomes = incomes.filter(
-    (income) =>
-      new Date(income.startDate).getFullYear() <= currentYear &&
-      (new Date(income.terminationDate).getFullYear() > currentYear ||
-        (new Date(income.terminationDate).getFullYear() === currentYear &&
-          new Date(income.terminationDate).getMonth() >= currentMonth)
-           || !income.terminationDate)
-  );
-
   const settings  = {
     series: [{
       name: 'Income',
-      data: filteredIncomes.map(income => income.annualMonthlyValue)
+      data: incomes.map(income => income.annualMonthlyValue)
     }],
     options: {
       chart: {
@@ -42,7 +30,7 @@ const IncomesChart = ({incomes}) => {
       },
       colors: ['#00e396'],
       xaxis: {
-        categories: filteredIncomes.map(income => income.name),
+        categories: incomes.map(income => income.name),
       },
       yaxis: {
         title: {

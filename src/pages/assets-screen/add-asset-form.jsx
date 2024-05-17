@@ -13,7 +13,16 @@ const AddAssetForm = ({ onSuccess }) => {
     dateOfAcquirement: '',
   });
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setValues({
+      name: '',
+      description: '',
+      value: '',
+      interestRate: '',
+      dateOfAcquirement: '',
+    })
+  }
   const handleShow = () => setShow(true);
 
   const handleChange = (e) => {

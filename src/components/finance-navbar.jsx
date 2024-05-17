@@ -35,10 +35,10 @@ export const FinanceNavbar = () => {
         </Navbar.Brand>
         <Nav className="me-auto">
           <Nav.Link href={HOME_PAGE.path}>Home</Nav.Link>
-          <Nav.Link href={GOALS_PAGE.path}>Goals</Nav.Link>
-          <Nav.Link href={COSTS_PAGE.path}>Const</Nav.Link>
           <Nav.Link href={INCOMES_PAGE.path}>Incomes</Nav.Link>
           <Nav.Link href={ASSETS_PAGE.path}>Assets</Nav.Link>
+          <Nav.Link href={COSTS_PAGE.path}>Const</Nav.Link>
+          <Nav.Link href={GOALS_PAGE.path}>Goals</Nav.Link>
         </Nav>
         <>
           <Button variant="primary" onClick={handleShow} className="me-2">

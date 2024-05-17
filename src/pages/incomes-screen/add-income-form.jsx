@@ -14,7 +14,17 @@ const AddIncomeForm = ({ onSuccess }) => {
     interestRate: '',
   });
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setValues({
+      name: '',
+      description: '',
+      annualMonthlyValue: '',
+      startDate: '',
+      terminationDate: '',
+      interestRate: '',
+    })
+  }
   const handleShow = () => setShow(true);
 
   const handleChange = (e) => {

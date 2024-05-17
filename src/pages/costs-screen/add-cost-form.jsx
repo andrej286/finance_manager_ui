@@ -9,13 +9,22 @@ const AddCostForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState({
     name: '',
-    costType: '',
+    costType: 'ONE_TIME',
     amount: '',
     dateOfPayment: '',
     description: '',
   });
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setValues({
+      name: '',
+      costType: 'ONE_TIME',
+      amount: '',
+      dateOfPayment: '',
+      description: '',
+    })
+  }
   const handleShow = () => setShow(true);
 
   const handleChange = (e) => {

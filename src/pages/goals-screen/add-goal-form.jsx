@@ -21,13 +21,22 @@ const AddGoalForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState({
     name: '',
-    goalType: '',
+    goalType: 'TRAVEL',
     amount: '',
     dateOfOccurrence: '',
     description: '',
   });
 
-  const handleClose = () => setShow(false);
+  const handleClose = () => {
+    setShow(false);
+    setValues({
+      name: '',
+      goalType: 'TRAVEL',
+      amount: '',
+      dateOfOccurrence: '',
+      description: '',
+    })
+  }
   const handleShow = () => setShow(true);
 
   const handleChange = (e) => {
