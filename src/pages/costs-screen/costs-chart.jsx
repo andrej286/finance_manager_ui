@@ -45,6 +45,8 @@ export const CostsChart = ({ costs }) => {
         type: 'bar',
         height: 350,
       },
+      colors: ['#feb019'],
+      // colors: ['#F02525'],
       plotOptions: {
         bar: {
           horizontal: false,

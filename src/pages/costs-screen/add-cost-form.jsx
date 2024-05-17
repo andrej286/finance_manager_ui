@@ -2,28 +2,15 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createCost } from '../../api/http-utils/costs';
 import {AddButton} from "../../components/add-button";
-
-export const costTypes = ['ONE_TIME', 'MONTHLY', 'YEARLY'];
+import {costTypes, costTypeTexts, initialCostFormState} from "./constants";
 
 const AddCostForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
-  const [values, setValues] = useState({
-    name: '',
-    costType: 'ONE_TIME',
-    amount: '',
-    dateOfPayment: '',
-    description: '',
-  });
+  const [values, setValues] = useState(initialCostFormState);
 
   const handleClose = () => {
     setShow(false);
-    setValues({
-      name: '',
-      costType: 'ONE_TIME',
-      amount: '',
-      dateOfPayment: '',
-      description: '',
-    })
+    setValues(initialCostFormState);
   }
   const handleShow = () => setShow(true);
 
@@ -69,7 +56,7 @@ const AddCostForm = ({ onSuccess }) => {
               >
                 {costTypes.map((type) => (
                   <option key={type} value={type}>
-                    {type}
+                    {costTypeTexts[type]}
                   </option>
                 ))}
               </Form.Control>

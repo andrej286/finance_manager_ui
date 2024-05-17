@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import {goalTypes} from "./add-goal-form";
+import {goalTypes, goalTypeTexts} from "./constants";
 
 const EditGoalForm = ({ show, goal, onHide, onChange, onSubmit }) => {
 
@@ -31,7 +31,7 @@ const EditGoalForm = ({ show, goal, onHide, onChange, onSubmit }) => {
               >
                 {goalTypes.map((type) => (
                   <option key={type} value={type}>
-                    {type}
+                    {goalTypeTexts[type]}
                   </option>
                 ))}
               </Form.Control>

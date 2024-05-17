@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import {costTypes} from "./add-cost-form";
+import {costTypes, costTypeTexts} from "./constants";
 
 const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
 
@@ -31,7 +31,7 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
               >
                 {costTypes.map((type) => (
                   <option key={type} value={type}>
-                    {type}
+                    {costTypeTexts[type]}
                   </option>
                 ))}
               </Form.Control>

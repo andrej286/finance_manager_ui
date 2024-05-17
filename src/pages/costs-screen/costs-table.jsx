@@ -5,6 +5,7 @@ import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditCostForm from "./edit-cost-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
+import {costTypeTexts} from "./constants";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -110,7 +111,7 @@ export const CostsTable = ({costs, onSuccess}) => {
             </StyledTableCell>
             <StyledTableCell>{cost.amount} €</StyledTableCell>
             <StyledTableCell>{formatDate(cost.dateOfPayment)}</StyledTableCell>
-            <StyledTableCell>{cost.costType}</StyledTableCell>
+            <StyledTableCell>{costTypeTexts[cost.costType]}</StyledTableCell>
             <StyledTableCell>
               <EditButton onClick={() => handleEditCost(cost)}/>
               <DeleteButton onClick={() => handleDeleteCost(cost.id)}/>

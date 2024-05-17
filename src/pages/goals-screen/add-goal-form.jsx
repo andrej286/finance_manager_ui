@@ -2,40 +2,15 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createGoal } from '../../api/http-utils/goals';
 import {AddButton} from "../../components/add-button";
-
-export const goalTypes = [
-  'TRAVEL',
-  'REALESTATE',
-  'CAR',
-  'EDUCATION',
-  'RETIREMENT',
-  'HEALTH',
-  'INVESTMENT',
-  'BUSINESS',
-  'FAMILY',
-  'CHARITY',
-  'OTHER',
-];
+import {goalTypes, goalTypeTexts, initialGoalFormState} from "./constants";
 
 const AddGoalForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
-  const [values, setValues] = useState({
-    name: '',
-    goalType: 'TRAVEL',
-    amount: '',
-    dateOfOccurrence: '',
-    description: '',
-  });
+  const [values, setValues] = useState(initialGoalFormState);
 
   const handleClose = () => {
     setShow(false);
-    setValues({
-      name: '',
-      goalType: 'TRAVEL',
-      amount: '',
-      dateOfOccurrence: '',
-      description: '',
-    })
+    setValues(initialGoalFormState)
   }
   const handleShow = () => setShow(true);
 
@@ -81,7 +56,7 @@ const AddGoalForm = ({ onSuccess }) => {
               >
                 {goalTypes.map((type) => (
                   <option key={type} value={type}>
-                    {type}
+                    {goalTypeTexts[type]}
                   </option>
                 ))}
               </Form.Control>

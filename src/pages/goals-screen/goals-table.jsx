@@ -5,6 +5,7 @@ import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditGoalForm from "./edit-goal-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
+import {goalTypeTexts} from "./constants";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -110,7 +111,7 @@ export const GoalsTable = ({goals, onSuccess}) => {
             </StyledTableCell>
             <StyledTableCell>{goal.amount} €</StyledTableCell>
             <StyledTableCell>{formatDate(goal.dateOfOccurrence)}</StyledTableCell>
-            <StyledTableCell>{goal.goalType}</StyledTableCell>
+            <StyledTableCell>{goalTypeTexts[goal.goalType]}</StyledTableCell>
             <StyledTableCell>
               <EditButton onClick={() => handleEditGoal(goal)}/>
               <DeleteButton onClick={() => handleDeleteGoal(goal.id)}/>

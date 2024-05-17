@@ -1,5 +1,6 @@
 import React, { useMemo } from 'react';
 import ReactApexChart from 'react-apexcharts';
+import {goalTypeTexts} from "../constants";
 
 export const GoalsPieChart = ({ goals }) => {
   const calculatedTotalCostByType = useMemo(() => {
@@ -22,7 +23,7 @@ export const GoalsPieChart = ({ goals }) => {
       chart: {
         type: 'pie',
       },
-      labels: Object.keys(calculatedTotalCostByType),
+      labels: Object.keys(calculatedTotalCostByType).map(goalType => goalTypeTexts[goalType]),
     },
   };
 
