@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import {useLocation, useNavigate } from "react-router-dom";
 import {fetchAccessToken} from "../../api/http-utils/auth";
+import {checkInPerson} from "../../api/http-utils/person";
 
 const Confirmation = () => {
   const location = useLocation();
@@ -16,6 +17,8 @@ const Confirmation = () => {
       fetchAccessToken(code).then((response) => {
         const token = response.token;
         localStorage.setItem('accessToken', token);
+      }).finally(async () => {
+        await checkInPerson();
         navigate('/home');
       });
     }
