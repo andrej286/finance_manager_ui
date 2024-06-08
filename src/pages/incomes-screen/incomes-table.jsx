@@ -5,6 +5,7 @@ import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditIncomeForm from "./edit-income-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
+import {formatNumber} from "../../common/util";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -110,7 +111,7 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
               </OverlayTrigger>
             }
           </StyledTableCell>
-          <StyledTableCell>{income.annualMonthlyValue} €</StyledTableCell>
+          <StyledTableCell>{formatNumber(income.annualMonthlyValue, '€')}</StyledTableCell>
           <StyledTableCell>{formatDate(income.startDate)}</StyledTableCell>
           <StyledTableCell>{formatDate(income.terminationDate)}</StyledTableCell>
           <StyledTableCell>{income.interestRate} %</StyledTableCell>

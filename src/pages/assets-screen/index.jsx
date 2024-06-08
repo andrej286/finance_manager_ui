@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 import {fetchAssets} from "../../api/http-utils/assets";
 import {AssetsTable} from "./assets-table";
 import AddAssetForm from "./add-asset-form";
-import {FinanceNavbar} from "../../components/finance-navbar";
 import AssetsChart from "./assets-chart";
 
 export const AssetsScreen = () => {
@@ -19,7 +18,6 @@ export const AssetsScreen = () => {
 
   return (
     <>
-      <FinanceNavbar/>
       <h1>Assets</h1>
       <AssetsChart assets={assets}/>
       <AddAssetForm onSuccess={fetchAndSetAssets}/>

@@ -43,7 +43,8 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
               <Form.Control
                 type="date"
                 name="startDate"
-                value={income.startDate}
+                value={new Date(income.startDate).toLocaleDateString()}
+                placeholder={new Date(income.startDate).toLocaleDateString()}
                 onChange={onChange}
               />
             </Form.Group>

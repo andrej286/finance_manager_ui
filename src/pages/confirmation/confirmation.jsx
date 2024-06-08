@@ -18,11 +18,11 @@ const Confirmation = () => {
         const token = response.token;
         localStorage.setItem('accessToken', token);
       }).finally(async () => {
-        await checkInPerson();
+        await checkInPerson().then(response => console.log(response));
         navigate('/home');
       });
     }
-  }, [location.search]);
+  }, [location.search, navigate]);
 
   return (<div> </div>);
 }

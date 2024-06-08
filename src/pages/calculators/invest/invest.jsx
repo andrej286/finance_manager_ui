@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import { FinanceNavbar } from "../../../components/finance-navbar";
 import {Form, InputGroup} from "react-bootstrap";
 
 const Invest = () => {
@@ -75,7 +74,6 @@ const Invest = () => {
 
   return (
     <>
-      <FinanceNavbar />
       <ReactApexChart options={options} series={series} type="line" height={350} />
       <InputGroup className="mb-3 w-25" >
         <InputGroup.Text>Initial Amount (€):</InputGroup.Text>

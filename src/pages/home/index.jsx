@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FinanceNavbar } from '../../components/finance-navbar';
 import { Card, Button, Col, Container, Row } from 'react-bootstrap';
 import {CAPITAL_PAGE, EARNINGS_PAGE, INVEST_PAGE} from '../../routes';
 
@@ -8,7 +7,6 @@ const Home = () => {
 
   return (
     <>
-      <FinanceNavbar />
       <Container className="mt-2">
         <Row>
           <Col>
@@ -31,7 +29,7 @@ const Home = () => {
               <Card.Body>
                 <Card.Title>Capital Calculator</Card.Title>
                 <Card.Text style={{ height: '10rem' }}>
-                  Forecasts your future capital value. Designed to help you visualize the growth of your assets over time based on the acquisition date and the interest rates,.</Card.Text>
+                  Forecasts your future capital value. Designed to help you visualize the growth of your assets over time based on the acquisition date and the interest rates.</Card.Text>
                 <Link to={CAPITAL_PAGE.path}>
                   <Button variant="primary">Go to Calculator</Button>
                 </Link>

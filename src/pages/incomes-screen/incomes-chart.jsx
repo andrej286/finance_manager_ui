@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import {formatNumber} from "../../common/util";
 
 const IncomesChart = ({incomes}) => {
 
@@ -38,7 +39,7 @@ const IncomesChart = ({incomes}) => {
         },
         labels: {
           formatter: function (value) {
-            return value.toLocaleString('en-US', {style: 'currency', currency: 'EUR'});
+            return formatNumber(value, '€');
           }
         }
       },

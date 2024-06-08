@@ -19,7 +19,7 @@ const StartScreen = () => {
       <Image src="/images/piggy-bank.png" fluid />
       <h1 className="my-4">Welcome to the Financial Manager</h1>
       <p className="mb-5" style={{fontSize: '20px'}}>Manage your finances and track your expenses with ease</p>
-      <a href={authUrl}>
+      <a href={authUrl} style={{marginBottom: '150px'}}>
         <Button className="bg-white text-dark d-inline-flex align-items-center">
           <Image src="/images/google.svg" width="20" fluid className="me-2" />
           Log in with Google

@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {fetchAssets} from "../../../api/http-utils/assets";
-import {FinanceNavbar} from "../../../components/finance-navbar";
 import {InputGroup, Form, Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {ASSETS_PAGE} from "../../../routes";
@@ -69,7 +68,6 @@ const Capital = () => {
 
   return (
     <>
-      <FinanceNavbar />
       <ReactApexChart options={options} series={chartData} type="bar" height={350} />
       <InputGroup className="mb-3 w-25" >
         <InputGroup.Text id="inputGroup-sizing-default">

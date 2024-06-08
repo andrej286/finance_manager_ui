@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {fetchIncomes} from "../../../api/http-utils/incomes";
-import {FinanceNavbar} from "../../../components/finance-navbar";
 import ReactApexChart from "react-apexcharts";
 import {Button, Form, InputGroup} from "react-bootstrap";
 import {Link} from "react-router-dom";
@@ -76,7 +75,6 @@ export const Earnings = () => {
 
   return (
     <>
-      <FinanceNavbar/>
       <div id="chart">
         <ReactApexChart options={settings.options} series={settings.series} type="line" height={350} />
       </div>

@@ -1,13 +1,15 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState} from 'react';
 import {Container, Navbar, Nav, Button, Offcanvas, Image} from "react-bootstrap";
 import {ASSETS_PAGE, COSTS_PAGE, GOALS_PAGE, HOME_PAGE, INCOMES_PAGE} from "../routes";
 import {fetchPersonInfo} from "../api/http-utils/person";
 import {useNavigate} from "react-router-dom";
+import { useTranslation} from "react-i18next";
 
-export const FinanceNavbar = () => {
+export const FinanceNavbar = ({locale, handleChange}) => {
   const [show, setShow] = useState(false);
   const [personInfo, setPersonInfo] = useState({});
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -34,11 +36,11 @@ export const FinanceNavbar = () => {
           <Image src="/images/piggy-bank.png" width="50" fluid />
         </Navbar.Brand>
         <Nav className="me-auto">
-          <Nav.Link href={HOME_PAGE.path}>Home</Nav.Link>
-          <Nav.Link href={INCOMES_PAGE.path}>Incomes</Nav.Link>
-          <Nav.Link href={ASSETS_PAGE.path}>Assets</Nav.Link>
-          <Nav.Link href={COSTS_PAGE.path}>Const</Nav.Link>
-          <Nav.Link href={GOALS_PAGE.path}>Goals</Nav.Link>
+          <Nav.Link href={HOME_PAGE.path}>{t("header.home")}</Nav.Link>
+          <Nav.Link href={INCOMES_PAGE.path}>{t("header.incomes")}</Nav.Link>
+          <Nav.Link href={ASSETS_PAGE.path}>{t("header.assets")}</Nav.Link>
+          <Nav.Link href={COSTS_PAGE.path}>{t("header.costs")}</Nav.Link>
+          <Nav.Link href={GOALS_PAGE.path}>{t("header.goals")}</Nav.Link>
         </Nav>
         <>
           <Button variant="primary" onClick={handleShow} className="me-2">
@@ -53,6 +55,12 @@ export const FinanceNavbar = () => {
               <div>{personInfo.email}</div>
               <br/>
               <Button className="fs-6 align-middle" variant="danger" onClick={handleLogOut}>Log Out</Button>
+              <Button className="fs-6 align-middle" variant="danger" onClick={() => console.log("mk")}>MK</Button>
+              <Button className="fs-6 align-middle" variant="danger" onClick={() => console.log("en")}>EN</Button>
+              <select value={locale} onChange={handleChange}>
+                <option value="en">English</option>
+                <option value="mk">Macedonian</option>
+              </select>
             </Offcanvas.Body>
           </Offcanvas>
         </>
