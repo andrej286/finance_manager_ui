@@ -43,5 +43,36 @@
     },
     "button": "Оди до Калкулатор"
   },
-  "currency": "ден"
+  "currency": "ден",
+  "section": {
+    "income": {
+      "title": "Приходи",
+      "value": "Вредност (ден)",
+      "form": {
+        "addTitle": "Додади Приход",
+        "editTitle": "Измени Приход",
+        "titleForm": "Форма за Приход",
+        "name": "Име на Приход",
+        "namePlaceholder": "Внеси име",
+        "description": "Опис на приход",
+        "descriptionPlaceholder": "Внеси опис",
+        "monthlyValue": "Годишна Месечна Вредност:",
+        "monthlyValuePlaceholder": "Внеси вредност",
+        "startDate": "Датум на Почеток:",
+        "terminationDate": "Датум на Престанок:",
+        "interest": "Стапка на Камата:",
+        "interestPlaceholder": "Внеси каматна стапка",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име на Приход",
+        "monthlyValue": "Годишна Месечна Вредност",
+        "startDate": "Датум на Почеток",
+        "terminationDate": "Датум на Престанок",
+        "interest": "Стапка на Камата",
+        "actions": "Акции"
+      }
+    }
+  }
 }

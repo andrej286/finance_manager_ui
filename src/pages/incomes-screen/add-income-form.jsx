@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Button, Modal, Form } from 'react-bootstrap';
 import { createIncome } from "../../api/http-utils/incomes";
 import {AddButton} from "../../components/add-button";
+import {useTranslation} from "react-i18next";
 
 const AddIncomeForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
+  const {t} = useTranslation();
   const [values, setValues] = useState({
     name: '',
     description: '',
@@ -43,45 +45,45 @@ const AddIncomeForm = ({ onSuccess }) => {
 
   return (
     <>
-      <AddButton onClick={handleShow} text={"Add an Income"}/>
+      <AddButton onClick={handleShow} text={t("section.income.form.addTitle")}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Income form</Modal.Title>
+          <Modal.Title>{t("section.income.form.addTitle")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="name">
-              <Form.Label>Name:</Form.Label>
+              <Form.Label>{t("section.income.form.name")}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter name"
+                placeholder={t("section.income.form.namePlaceholder")}
                 name="name"
                 value={values.name}
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>{t("section.income.form.description")}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter description"
+                placeholder={t("section.income.form.descriptionPlaceholder")}
                 name="description"
                 value={values.description}
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group controlId="annualMonthlyValue">
-              <Form.Label>Annual Monthly Value:</Form.Label>
+              <Form.Label>{t("section.income.form.monthlyValue")}</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter value"
+                placeholder={t("section.income.form.monthlyValuePlaceholder")}
                 name="annualMonthlyValue"
                 value={values.annualMonthlyValue}
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group controlId="startDate">
-              <Form.Label>Start Date:</Form.Label>
+              <Form.Label>{t("section.income.form.startDate")}</Form.Label>
               <Form.Control
                 type="date"
                 name="startDate"
@@ -90,7 +92,7 @@ const AddIncomeForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="terminationDate">
-              <Form.Label>Termination Date:</Form.Label>
+              <Form.Label>{t("section.income.form.terminationDate")}</Form.Label>
               <Form.Control
                 type="date"
                 name="terminationDate"
@@ -99,10 +101,10 @@ const AddIncomeForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate:</Form.Label>
+              <Form.Label>{t("section.income.form.interest")}</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter interest rate"
+                placeholder={t("section.income.form.interestPlaceholder")}
                 name="interestRate"
                 value={values.interestRate}
                 onChange={handleChange}
@@ -112,10 +114,10 @@ const AddIncomeForm = ({ onSuccess }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("section.income.form.close")}
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Save Changes
+            {t("section.income.form.save")}
           </Button>
         </Modal.Footer>
       </Modal>

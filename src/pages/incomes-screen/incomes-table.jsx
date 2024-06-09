@@ -6,6 +6,7 @@ import EditIncomeForm from "./edit-income-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
 import {formatNumber} from "../../common/util";
+import {useTranslation} from "react-i18next";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -49,9 +50,9 @@ const StyledTableCell = styled.td`
 `;
 
 export const IncomesTable = ({ incomes, onSuccess }) => {
-
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedIncome, setSelectedIncome] = useState(null);
+  const {t} = useTranslation();
 
   const handleDeleteIncome = useCallback(async (id) => {
     await deleteIncome(id)
@@ -92,12 +93,12 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
     <StyledTable>
       <thead>
       <StyledTableRow>
-        <StyledTableHeader>Name of Income</StyledTableHeader>
-        <StyledTableHeader>Annual Monthly Value</StyledTableHeader>
-        <StyledTableHeader>Date of Occurrence</StyledTableHeader>
-        <StyledTableHeader>Date of Termination</StyledTableHeader>
-        <StyledTableHeader>Interest Rate</StyledTableHeader>
-        <StyledTableHeader>Actions</StyledTableHeader>
+        <StyledTableHeader>{t("section.income.table.name")}</StyledTableHeader>
+        <StyledTableHeader>{t("section.income.table.monthlyValue")}</StyledTableHeader>
+        <StyledTableHeader>{t("section.income.table.startDate")}</StyledTableHeader>
+        <StyledTableHeader>{t("section.income.table.terminationDate")}</StyledTableHeader>
+        <StyledTableHeader>{t("section.income.table.interest")}</StyledTableHeader>
+        <StyledTableHeader>{t("section.income.table.actions")}</StyledTableHeader>
       </StyledTableRow>
       </thead>
       <tbody>
@@ -111,7 +112,7 @@ export const IncomesTable = ({ incomes, onSuccess }) => {
               </OverlayTrigger>
             }
           </StyledTableCell>
-          <StyledTableCell>{formatNumber(income.annualMonthlyValue, '€')}</StyledTableCell>
+          <StyledTableCell>{formatNumber(income.annualMonthlyValue, t('currency'))}</StyledTableCell>
           <StyledTableCell>{formatDate(income.startDate)}</StyledTableCell>
           <StyledTableCell>{formatDate(income.terminationDate)}</StyledTableCell>
           <StyledTableCell>{income.interestRate} %</StyledTableCell>

@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {formatNumber} from "../../common/util";
+import {useTranslation} from "react-i18next";
 
 const IncomesChart = ({incomes}) => {
+  const {t} = useTranslation();
 
   const settings  = {
     series: [{
-      name: 'Income',
+      name: t("section.income.title"),
       data: incomes.map(income => income.annualMonthlyValue)
     }],
     options: {
@@ -35,11 +37,11 @@ const IncomesChart = ({incomes}) => {
       },
       yaxis: {
         title: {
-          text: 'Value'
+          text: t("section.income.value")
         },
         labels: {
           formatter: function (value) {
-            return formatNumber(value, '€');
+            return formatNumber(value, t('currency'));
           }
         }
       },

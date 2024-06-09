@@ -1,17 +1,20 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import {useTranslation} from "react-i18next";
 
 const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
+  const {t} = useTranslation();
+
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Income</Modal.Title>
+        <Modal.Title>{t("section.income.form.editTitle")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {income && (
           <Form>
             <Form.Group controlId="name">
-              <Form.Label>Name of Income</Form.Label>
+              <Form.Label>{t("section.income.form.name")}</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -20,7 +23,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description of Income</Form.Label>
+              <Form.Label>{t("section.income.form.description")}</Form.Label>
               <Form.Control
                 type="text"
                 name="description"
@@ -30,7 +33,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
             </Form.Group>
 
             <Form.Group controlId="annualMonthlyValue">
-              <Form.Label>Annual Monthly Value</Form.Label>
+              <Form.Label>{t("section.income.form.monthlyValue")}</Form.Label>
               <Form.Control
                 type="text"
                 name="annualMonthlyValue"
@@ -39,7 +42,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="startDate">
-              <Form.Label>Date of Occurrence</Form.Label>
+              <Form.Label>{t("section.income.form.startDate")}</Form.Label>
               <Form.Control
                 type="date"
                 name="startDate"
@@ -49,7 +52,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="terminationDate">
-              <Form.Label>Date of Termination</Form.Label>
+              <Form.Label>{t("section.income.form.terminationDate")}</Form.Label>
               <Form.Control
                 type="date"
                 name="terminationDate"
@@ -58,7 +61,7 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate</Form.Label>
+              <Form.Label>{t("section.income.form.interest")}</Form.Label>
               <Form.Control
                 type="text"
                 name="interestRate"
@@ -71,10 +74,10 @@ const EditIncomeForm = ({ show, income, onHide, onChange, onSubmit }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
-          Close
+          {t("section.income.form.close")}
         </Button>
         <Button variant="primary" onClick={onSubmit}>
-          Save Changes
+          {t("section.income.form.save")}
         </Button>
       </Modal.Footer>
     </Modal>

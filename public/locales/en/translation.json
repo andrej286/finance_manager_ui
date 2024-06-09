@@ -43,5 +43,36 @@
     },
     "button": "Go to Calculator"
   },
-  "currency": "€"
+  "currency": "€",
+  "section": {
+    "income": {
+      "title": "Incomes",
+      "value": "Value (€)",
+      "form": {
+        "addTitle": "Add an Income",
+        "editTitle": "Edit Income",
+        "titleForm": "Income form",
+        "name": "Name of Income",
+        "namePlaceholder": "Enter name",
+        "description": "Description of income",
+        "descriptionPlaceholder": "Enter description",
+        "monthlyValue": "Annual Monthly Value:",
+        "monthlyValuePlaceholder": "Enter value",
+        "startDate": "Start Date:",
+        "terminationDate": "Termination Date:",
+        "interest": "Interest Rate:",
+        "interestPlaceholder": "Enter interest rate",
+        "close:": "Close",
+        "save:": "Save Changes"
+      },
+      "table": {
+        "name": "Name of Income",
+        "monthlyValue": "Annual Monthly Value",
+        "startDate": "Date of Occurrence",
+        "terminationDate": "Date of Termination",
+        "interest": "Interest Rate",
+        "actions": "Actions"
+      }
+    }
+  }
 }
