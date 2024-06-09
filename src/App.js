@@ -16,8 +16,8 @@ function FinancialManager() {
 
   i18n.on('languageChanged', (lng) => setLocale(i18n.language))
 
-  const handleChange = (event) => {
-    i18n.changeLanguage(event.target.value);
+  const handleChange = (language) => {
+    i18n.changeLanguage(language);
   }
 
   const location = useLocation();
@@ -27,7 +27,7 @@ function FinancialManager() {
     <LocaleContext.Provider value={{locale, setLocale}}>
       <Suspense fallback={<Loading />}>
         <>
-          {showNavbar && <FinanceNavbar locale={locale} handleChange={handleChange}/>}
+          {showNavbar && <FinanceNavbar handleLocaleChange={handleChange}/>}
           <Routes>
             {ALL_PAGES.map((page) => <Route path={page.path} element={page.component} />)}
           </Routes>

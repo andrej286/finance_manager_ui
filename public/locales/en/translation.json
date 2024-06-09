@@ -1,10 +1,13 @@
 {
   "header": {
+    "title": "Financial Manager",
     "home": "Home",
     "incomes": "Incomes",
     "goals": "Goals",
     "costs": "Costs",
-    "assets": "Assets"
+    "assets": "Assets",
+    "userInfo": "User info",
+    "logOut": "Log Out"
   },
   "calculator": {
     "earnings": {

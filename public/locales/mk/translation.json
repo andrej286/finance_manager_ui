@@ -1,10 +1,13 @@
 {
   "header": {
+    "title": "Финансиски Менаџер",
     "home": "Почетна",
     "incomes": "Приходи",
     "goals": "Цели",
     "costs": "Трошоци",
-    "assets": "Средства"
+    "assets": "Средства",
+    "userInfo": "Кориснички податоци",
+    "logOut": "Одјави се"
   },
   "calculator": {
     "earnings": {
