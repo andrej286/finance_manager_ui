@@ -6,6 +6,7 @@ import {Link} from "react-router-dom";
 import {INCOMES_PAGE} from "../../../routes";
 import {calculateMonthlyValues, getNext12Months} from "./util";
 import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../../common/util";
 
 export const Earnings = () => {
   const [incomes, setIncomes] = useState([]);
@@ -47,7 +48,7 @@ export const Earnings = () => {
         min: 0,
         labels: {
           formatter: function (value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+            return formatNumber(value, t('currency'));
           }
         }
       },

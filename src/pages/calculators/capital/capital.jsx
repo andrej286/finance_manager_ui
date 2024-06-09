@@ -5,6 +5,7 @@ import {InputGroup, Form, Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {ASSETS_PAGE} from "../../../routes";
 import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../../common/util";
 
 const Capital = () => {
   const [assets, setAssets] = useState([]);
@@ -41,7 +42,7 @@ const Capital = () => {
       },
       labels: {
         formatter: function (value) {
-          return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+          return formatNumber(value, t('currency'));
         }
       }
     },

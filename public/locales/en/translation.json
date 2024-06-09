@@ -42,5 +42,6 @@
       }
     },
     "button": "Go to Calculator"
-  }
+  },
+  "currency": "€"
 }

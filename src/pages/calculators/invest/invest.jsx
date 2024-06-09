@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {Form, InputGroup} from "react-bootstrap";
 import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../../common/util";
 
 const Invest = () => {
   const [initialAmount, setInitialAmount] = useState(1000);
@@ -46,7 +47,7 @@ const Invest = () => {
       },
       labels: {
         formatter: function (value) {
-          return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+          return formatNumber(value, t('currency'));
         }
       }
     },
