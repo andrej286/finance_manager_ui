@@ -75,7 +75,7 @@
       }
     },
     "asset": {
-      "title": "Asset",
+      "title": "Assets",
       "value": "Value (€)",
       "form": {
         "addTitle": "Add an Asset",
@@ -96,6 +96,36 @@
         "acquiringDate": "Date of Acquirement",
         "interest": "Interest Rate",
         "actions": "Actions"
+      }
+    },
+    "cost": {
+      "title": "Costs",
+      "chart": {
+        "title": "Yearly costs",
+        "seriesName": "Total Cost"
+      },
+      "form": {
+        "addTitle": "Add an Cost",
+        "editTitle": "Edit Cost",
+        "name": "Name of Cost",
+        "type": "Type:",
+        "amount": "Amount: (€):",
+        "dateOfPayment": "Date of Payment:",
+        "description": "Description:",
+        "close": "Close",
+        "save": "Save Changes"
+      },
+      "table": {
+        "name": "Name",
+        "amount": "Amount",
+        "dateOfPayment": "Date of payment",
+        "type": "Type",
+        "actions": "Actions"
+      },
+      "type": {
+        "ONE_TIME": "One time",
+        "MONTHLY": "Monthly",
+        "YEARLY": "Yearly"
       }
     }
   }

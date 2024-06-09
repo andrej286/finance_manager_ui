@@ -97,6 +97,36 @@
         "interest": "Стапка на Камата",
         "actions": "Акции"
       }
+    },
+    "cost": {
+      "title": "Трошоци",
+      "chart": {
+        "title": "Годишни трошоци",
+        "seriesName": "Вкупен Трошок"
+      },
+      "form": {
+        "addTitle": "Додади Трошок",
+        "editTitle": "Измени Трошок",
+        "name": "Име на Трошок",
+        "type": "Тип:",
+        "amount": "Сума (ден):",
+        "dateOfPayment": "Датум на Плаќање:",
+        "description": "Опис:",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име",
+        "amount": "Сума",
+        "dateOfPayment": "Датум на Плаќање",
+        "type": "Тип",
+        "actions": "Акции"
+      },
+      "type": {
+        "ONE_TIME": "Еднократно",
+        "MONTHLY": "Месечно",
+        "YEARLY": "Годишно"
+      }
     }
   }
 }

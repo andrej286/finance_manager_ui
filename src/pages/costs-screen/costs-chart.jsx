@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../common/util";
 
 export const CostsChart = ({ costs }) => {
+  const {t} = useTranslation();
 
   const currentYear = new Date().getFullYear();
 
@@ -37,7 +40,7 @@ export const CostsChart = ({ costs }) => {
 
   const settings = {
     series: [{
-      name: "Total Cost",
+      name: t("section.cost.chart.seriesName"),
       data: calculateTotalCosts(),
     }],
     options: {
@@ -62,14 +65,14 @@ export const CostsChart = ({ costs }) => {
       },
       yaxis: {
         title: {
-          text: 'Yearly costs',
+          text: t("section.cost.chart.title"),
           style: {
             fontSize: '15px'
           }
         },
         labels: {
           formatter: function (value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+            return formatNumber(value, t('currency'));
           }
         }
       }

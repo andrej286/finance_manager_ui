@@ -5,7 +5,7 @@ import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditCostForm from "./edit-cost-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
-import {costTypeTexts} from "./constants";
+import {useTranslation} from "react-i18next";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -51,6 +51,7 @@ const StyledTableCell = styled.td`
 export const CostsTable = ({costs, onSuccess}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedCost, setSelectedCost] = useState(null);
+  const {t} = useTranslation();
 
   const handleDeleteCost = useCallback(async (id) => {
     await deleteCost(id)
@@ -91,11 +92,11 @@ export const CostsTable = ({costs, onSuccess}) => {
       <StyledTable>
         <thead>
         <StyledTableRow>
-          <StyledTableHeader>Name</StyledTableHeader>
-          <StyledTableHeader>Amount</StyledTableHeader>
-          <StyledTableHeader>Date of payment</StyledTableHeader>
-          <StyledTableHeader>Type</StyledTableHeader>
-          <StyledTableHeader>Actions</StyledTableHeader>
+          <StyledTableHeader>{t("section.cost.table.name")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.cost.table.amount")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.cost.table.dateOfPayment")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.cost.table.type")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.cost.table.actions")}</StyledTableHeader>
         </StyledTableRow>
         </thead>
         <tbody>
@@ -111,7 +112,7 @@ export const CostsTable = ({costs, onSuccess}) => {
             </StyledTableCell>
             <StyledTableCell>{cost.amount} €</StyledTableCell>
             <StyledTableCell>{formatDate(cost.dateOfPayment)}</StyledTableCell>
-            <StyledTableCell>{costTypeTexts[cost.costType]}</StyledTableCell>
+            <StyledTableCell>{t(`section.cost.type.${cost.costType}`)}</StyledTableCell>
             <StyledTableCell>
               <EditButton onClick={() => handleEditCost(cost)}/>
               <DeleteButton onClick={() => handleDeleteCost(cost.id)}/>

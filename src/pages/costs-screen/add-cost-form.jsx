@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createCost } from '../../api/http-utils/costs';
 import {AddButton} from "../../components/add-button";
-import {costTypes, costTypeTexts, initialCostFormState} from "./constants";
+import {costTypes, initialCostFormState} from "./constants";
+import {useTranslation} from "react-i18next";
 
 const AddCostForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState(initialCostFormState);
+  const {t} = useTranslation();
 
   const handleClose = () => {
     setShow(false);
@@ -30,15 +32,15 @@ const AddCostForm = ({ onSuccess }) => {
 
   return (
     <>
-      <AddButton onClick={handleShow} text={"Add a Cost"}/>
+      <AddButton onClick={handleShow} text={t("section.cost.form.addTitle")}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Cost form</Modal.Title>
+          <Modal.Title>{t("section.cost.form.addTitle")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="name">
-                <Form.Label>Name of Cost</Form.Label>
+                <Form.Label>{t("section.cost.form.name")}</Form.Label>
                 <Form.Control
                   type="text"
                   name="name"
@@ -47,7 +49,7 @@ const AddCostForm = ({ onSuccess }) => {
                 />
               </Form.Group>
             <Form.Group controlId="costType">
-             <Form.Label>Type:</Form.Label>
+             <Form.Label>{t("section.cost.form.type")}</Form.Label>
               <Form.Control
                 as="select"
                 name="costType"
@@ -56,13 +58,13 @@ const AddCostForm = ({ onSuccess }) => {
               >
                 {costTypes.map((type) => (
                   <option key={type} value={type}>
-                    {costTypeTexts[type]}
+                    {t(`section.cost.type.${type}`)}
                   </option>
                 ))}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="amount">
-              <Form.Label>Amount:</Form.Label>
+              <Form.Label>{t("section.cost.form.amount")}</Form.Label>
               <Form.Control
                 type="number"
                 name="amount"
@@ -71,7 +73,7 @@ const AddCostForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="dateOfPayment">
-              <Form.Label>Date of Payment:</Form.Label>
+              <Form.Label>{t("section.cost.form.dateOfPayment")}</Form.Label>
               <Form.Control
                 type="date"
                 name="dateOfPayment"
@@ -80,7 +82,7 @@ const AddCostForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>{t("section.cost.form.dateOfPayment")}</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -93,10 +95,10 @@ const AddCostForm = ({ onSuccess }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("section.cost.form.close")}
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Add Cost
+            {t("section.cost.form.save")}
           </Button>
         </Modal.Footer>
       </Modal>

@@ -8,9 +8,3 @@ export const initialCostFormState = {
   dateOfPayment: '',
   description: '',
 }
-
-export const costTypeTexts = {
-  'ONE_TIME' : 'One time',
-  'MONTHLY' : 'Monthly',
-  'YEARLY' : 'Yearly',
-}

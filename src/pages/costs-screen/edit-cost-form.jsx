@@ -1,19 +1,21 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-import {costTypes, costTypeTexts} from "./constants";
+import {costTypes} from "./constants";
+import {useTranslation} from "react-i18next";
 
 const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
+  const {t} = useTranslation();
 
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Income</Modal.Title>
+        <Modal.Title>{t("section.cost.form.editTitle")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {cost && (
           <Form>
             <Form.Group controlId="name">
-              <Form.Label>Name of Income</Form.Label>
+              <Form.Label>{t("section.cost.form.name")}</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -22,7 +24,7 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="costType">
-              <Form.Label>Type:</Form.Label>
+              <Form.Label>{t("section.cost.form.type")}</Form.Label>
               <Form.Control
                 as="select"
                 name="costType"
@@ -31,13 +33,13 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
               >
                 {costTypes.map((type) => (
                   <option key={type} value={type}>
-                    {costTypeTexts[type]}
+                    {t(`section.cost.type.${type}`)}
                   </option>
                 ))}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="amount">
-              <Form.Label>Amount:</Form.Label>
+              <Form.Label>{t("section.cost.form.amount")}</Form.Label>
               <Form.Control
                 type="number"
                 name="amount"
@@ -46,7 +48,7 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="dateOfPayment">
-              <Form.Label>Date of Payment:</Form.Label>
+              <Form.Label>{t("section.cost.form.dateOfPayment")}</Form.Label>
               <Form.Control
                 type="date"
                 name="dateOfPayment"
@@ -55,7 +57,7 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>{t("section.cost.form.description")}</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -69,10 +71,10 @@ const EditCostForm = ({ show, cost, onHide, onChange, onSubmit }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
-          Close
+          {t("section.cost.form.close")}
         </Button>
         <Button variant="primary" onClick={onSubmit}>
-          Save Changes
+          {t("section.cost.form.save")}
         </Button>
       </Modal.Footer>
     </Modal>
