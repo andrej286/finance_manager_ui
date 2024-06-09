@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ReactApexChart from 'react-apexcharts';
 import {Form, InputGroup} from "react-bootstrap";
+import {useTranslation} from "react-i18next";
 
 const Invest = () => {
   const [initialAmount, setInitialAmount] = useState(1000);
@@ -8,6 +9,7 @@ const Invest = () => {
   const [optimisticRate, setOptimisticRate] = useState('5');
   const [realisticRate, setRealisticRate] = useState('4');
   const [pessimisticRate, setPessimisticRate] = useState('3');
+  const {t} = useTranslation();
 
   const calculateData = () => {
     const currentYear = new Date().getFullYear();
@@ -40,7 +42,7 @@ const Invest = () => {
     },
     yaxis: {
       title: {
-        text: 'Value (€)'
+        text: t("calculator.invest.chart.value")
       },
       labels: {
         formatter: function (value) {
@@ -49,7 +51,7 @@ const Invest = () => {
       }
     },
     title: {
-      text: 'Invest Calculator',
+      text: t("calculator.invest.title"),
       align: 'center',
       style: {
         fontSize: '20px'
@@ -59,15 +61,15 @@ const Invest = () => {
 
   const series = [
     {
-      name: 'Optimistic',
+      name: t("calculator.invest.chart.optimisticSeries"),
       data: calculateData().optimistic
     },
     {
-      name: 'Realistic',
+      name: t("calculator.invest.chart.realisticSeries"),
       data: calculateData().realistic
     },
     {
-      name: 'Pessimistic',
+      name: t("calculator.invest.chart.pessimisticSeries"),
       data: calculateData().pessimistic
     }
   ];
@@ -76,7 +78,7 @@ const Invest = () => {
     <>
       <ReactApexChart options={options} series={series} type="line" height={350} />
       <InputGroup className="mb-3 w-25" >
-        <InputGroup.Text>Initial Amount (€):</InputGroup.Text>
+        <InputGroup.Text>{t("calculator.invest.initialAmount")}</InputGroup.Text>
         <Form.Control
           type="number"
           value={initialAmount}
@@ -84,7 +86,7 @@ const Invest = () => {
         />
       </InputGroup>
       <InputGroup className="mb-3 w-25" >
-        <InputGroup.Text>Years to look into:</InputGroup.Text>
+        <InputGroup.Text>{t("calculator.invest.years")}</InputGroup.Text>
         <Form.Control
           type="number"
           value={yearsToLookInto}
@@ -92,7 +94,7 @@ const Invest = () => {
         />
       </InputGroup>
       <InputGroup className="mb-3 w-25">
-        <InputGroup.Text>Optimistic Rate (%):</InputGroup.Text>
+        <InputGroup.Text>{t("calculator.invest.optimisticRate")}</InputGroup.Text>
         <Form.Control
           type="text"
           value={optimisticRate}
@@ -101,7 +103,7 @@ const Invest = () => {
         />
       </InputGroup>
       <InputGroup className="mb-3 w-25">
-        <InputGroup.Text>Realistic Rate (%):</InputGroup.Text>
+        <InputGroup.Text>{t("calculator.invest.realisticRate")}</InputGroup.Text>
         <Form.Control
           type="text"
           value={realisticRate}
@@ -110,7 +112,7 @@ const Invest = () => {
         />
       </InputGroup>
       <InputGroup className="mb-3 w-25">
-        <InputGroup.Text>Pessimistic Rate (%):</InputGroup.Text>
+        <InputGroup.Text>{t("calculator.invest.pessimisticRate")}</InputGroup.Text>
         <Form.Control
           type="text"
           value={pessimisticRate}

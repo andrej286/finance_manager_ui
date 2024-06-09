@@ -4,10 +4,12 @@ import {fetchAssets} from "../../../api/http-utils/assets";
 import {InputGroup, Form, Button} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {ASSETS_PAGE} from "../../../routes";
+import {useTranslation} from "react-i18next";
 
 const Capital = () => {
   const [assets, setAssets] = useState([]);
   const [numberOfYears, setNumberOfYears] = useState(11);
+  const {t} = useTranslation();
 
   const currentYear = new Date().getFullYear();
   const years = Array.from({ length: numberOfYears }, (_, i) => currentYear + i);
@@ -21,7 +23,7 @@ const Capital = () => {
   ).map(value => Math.round(value));
 
   const chartData = [{
-    name: 'Assets',
+    name: t("calculator.capital.chart.seriesName"),
     data: assetValues
   }];
 
@@ -35,7 +37,7 @@ const Capital = () => {
     },
     yaxis: {
       title: {
-        text: 'Value (€)'
+        text: t("calculator.capital.chart.value")
       },
       labels: {
         formatter: function (value) {
@@ -44,7 +46,7 @@ const Capital = () => {
       }
     },
     title: {
-      text: 'Capital calculator',
+      text: t("calculator.capital.title"),
       align: 'center',
       style: {
         fontSize: '20px'
@@ -71,7 +73,7 @@ const Capital = () => {
       <ReactApexChart options={options} series={chartData} type="bar" height={350} />
       <InputGroup className="mb-3 w-25" >
         <InputGroup.Text id="inputGroup-sizing-default">
-          Select number of years
+          {t("calculator.capital.selectYears")}
         </InputGroup.Text>
         <Form.Control
           aria-label="Default"
@@ -82,7 +84,7 @@ const Capital = () => {
         />
       </InputGroup>
       <Link to={ASSETS_PAGE.path}>
-        <Button variant="primary">Add more Assets here >></Button>
+        <Button variant="primary">{t("calculator.capital.addAsset")}</Button>
       </Link>
     </>
   );

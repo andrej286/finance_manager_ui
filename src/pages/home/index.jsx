@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Button, Col, Container, Row } from 'react-bootstrap';
 import {CAPITAL_PAGE, EARNINGS_PAGE, INVEST_PAGE} from '../../routes';
+import {useTranslation} from "react-i18next";
 
 const Home = () => {
+  const {t} = useTranslation();
 
   return (
     <>
@@ -13,12 +15,12 @@ const Home = () => {
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src="/images/money-income.jpg" />
               <Card.Body>
-                <Card.Title>Earnings Calculator</Card.Title>
-                <Card.Text style={{ height: '10rem' }}>
-                  Comprehensive overview of your financial growth potential. Project your savings trajectory over the next 12 months by analyzing your incomes, your starting capital and accounting for interest rates.
+                <Card.Title>{t("calculator.earnings.title")}</Card.Title>
+                <Card.Text style={{ height: '13rem' }}>
+                  {t("calculator.earnings.description")}
                 </Card.Text>
                 <Link to={EARNINGS_PAGE.path}>
-                  <Button variant="primary">Go to Calculator</Button>
+                  <Button variant="primary">{t("calculator.button")}</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -27,11 +29,12 @@ const Home = () => {
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src="/images/garage-door.jpg" />
               <Card.Body>
-                <Card.Title>Capital Calculator</Card.Title>
-                <Card.Text style={{ height: '10rem' }}>
-                  Forecasts your future capital value. Designed to help you visualize the growth of your assets over time based on the acquisition date and the interest rates.</Card.Text>
+                <Card.Title>{t("calculator.capital.title")}</Card.Title>
+                <Card.Text style={{ height: '13rem' }}>
+                  {t("calculator.capital.description")}
+                </Card.Text>
                 <Link to={CAPITAL_PAGE.path}>
-                  <Button variant="primary">Go to Calculator</Button>
+                  <Button variant="primary">{t("calculator.button")}</Button>
                 </Link>
               </Card.Body>
             </Card>
@@ -40,11 +43,12 @@ const Home = () => {
             <Card style={{ width: '18rem' }}>
               <Card.Img variant="top" src="/images/lying-arrow.jpg" />
               <Card.Body>
-                <Card.Title>Invest Calculator</Card.Title>
-                <Card.Text style={{ height: '10rem' }}>
-                  Estimate the potential future value of your investments. Visualize the growth of your investments with ease, exploring optimistic, realistic, and pessimistic scenarios tailored to your financial goals.</Card.Text>
+                <Card.Title>{t("calculator.invest.title")}</Card.Title>
+                <Card.Text style={{ height: '13rem' }}>
+                  {t("calculator.invest.description")}
+                </Card.Text>
                 <Link to={INVEST_PAGE.path}>
-                  <Button variant="primary">Go to Calculator</Button>
+                  <Button variant="primary">{t("calculator.button")}</Button>
                 </Link>
               </Card.Body>
             </Card>

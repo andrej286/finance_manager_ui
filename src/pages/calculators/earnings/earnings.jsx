@@ -5,14 +5,16 @@ import {Button, Form, InputGroup} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {INCOMES_PAGE} from "../../../routes";
 import {calculateMonthlyValues, getNext12Months} from "./util";
+import {useTranslation} from "react-i18next";
 
 export const Earnings = () => {
   const [incomes, setIncomes] = useState([]);
   const [startCapital, setStartCapital] = useState(0);
+  const {t} = useTranslation();
 
   const settings = {
     series: [{
-      name: "Savings",
+      name: t("calculator.earnings.chart.seriesName"),
       data: calculateMonthlyValues(incomes, startCapital)
     }],
     options: {
@@ -40,7 +42,7 @@ export const Earnings = () => {
       },
       yaxis: {
         title: {
-          text: 'Value (€)'
+          text: t("calculator.earnings.chart.value")
         },
         min: 0,
         labels: {
@@ -50,7 +52,7 @@ export const Earnings = () => {
         }
       },
       title: {
-        text: 'Earnings calculator',
+        text: t("calculator.earnings.title"),
         align: 'center',
         style: {
           fontSize: '20px'
@@ -80,7 +82,7 @@ export const Earnings = () => {
       </div>
       <InputGroup className="mb-3 w-25" >
         <InputGroup.Text id="inputGroup-sizing-default">
-          Set the starting capital
+          {t("calculator.earnings.startCapital")}
         </InputGroup.Text>
         <Form.Control
           aria-label="Default"
@@ -91,7 +93,7 @@ export const Earnings = () => {
         />
       </InputGroup>
       <Link to={INCOMES_PAGE.path}>
-        <Button variant="primary">Add more Incomes here >></Button>
+        <Button variant="primary">{t("calculator.earnings.addIncome")}</Button>
       </Link>
     </>
   );
