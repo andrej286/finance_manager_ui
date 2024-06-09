@@ -5,6 +5,8 @@ import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditAssetForm from "./edit-asset-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
+import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../common/util";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -50,6 +52,7 @@ const StyledTableCell = styled.td`
 export const AssetsTable = ({assets, onSuccess}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedAsset, setSelectedAsset] = useState(null);
+  const {t} = useTranslation();
 
   const handleDeleteAsset = useCallback(async (id) => {
     await deleteAsset(id)
@@ -90,11 +93,11 @@ export const AssetsTable = ({assets, onSuccess}) => {
       <StyledTable>
         <thead>
         <StyledTableRow>
-          <StyledTableHeader>Name</StyledTableHeader>
-          <StyledTableHeader>Value</StyledTableHeader>
-          <StyledTableHeader>Date of Acquirement</StyledTableHeader>
-          <StyledTableHeader>Interest rate</StyledTableHeader>
-          <StyledTableHeader>Actions</StyledTableHeader>
+          <StyledTableHeader>{t('section.asset.table.name')}</StyledTableHeader>
+          <StyledTableHeader>{t('section.asset.table.value')}</StyledTableHeader>
+          <StyledTableHeader>{t('section.asset.table.acquiringDate')}</StyledTableHeader>
+          <StyledTableHeader>{t('section.asset.table.interest')}</StyledTableHeader>
+          <StyledTableHeader>{t('section.asset.table.actions')}</StyledTableHeader>
         </StyledTableRow>
         </thead>
         <tbody>
@@ -108,7 +111,7 @@ export const AssetsTable = ({assets, onSuccess}) => {
                 </OverlayTrigger>
               }
             </StyledTableCell>
-            <StyledTableCell>{asset.value} €</StyledTableCell>
+            <StyledTableCell>{formatNumber(asset.value, t('currency'))}</StyledTableCell>
             <StyledTableCell>{formatDate(asset.dateOfAcquirement)}</StyledTableCell>
             <StyledTableCell>{asset.interestRate} %</StyledTableCell>
             <StyledTableCell>

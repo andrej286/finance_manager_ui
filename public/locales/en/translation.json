@@ -73,6 +73,30 @@
         "interest": "Interest Rate",
         "actions": "Actions"
       }
+    },
+    "asset": {
+      "title": "Asset",
+      "value": "Value (€)",
+      "form": {
+        "addTitle": "Add an Asset",
+        "editTitle": "Edit Asset",
+        "name": "Name of Asset",
+        "namePlaceholder": "Enter name",
+        "value": "Value (€):",
+        "interest": "Interest Rate",
+        "interestPlaceholder": "Enter interest rate",
+        "acquiringDate": "Acquiring date:",
+        "description": "Description:",
+        "close": "Close",
+        "save": "Save Changes"
+      },
+      "table": {
+        "name": "Name",
+        "value": "Value",
+        "acquiringDate": "Date of Acquirement",
+        "interest": "Interest Rate",
+        "actions": "Actions"
+      }
     }
   }
 }

@@ -1,18 +1,20 @@
 import React from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
+import {useTranslation} from "react-i18next";
 
 const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
+  const {t} = useTranslation();
 
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Edit Income</Modal.Title>
+        <Modal.Title>{t("section.asset.form.editTitle")}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {asset && (
           <Form>
             <Form.Group controlId="name">
-              <Form.Label>Name of Income</Form.Label>
+              <Form.Label>{t("section.asset.form.name")}</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -21,7 +23,7 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="value">
-              <Form.Label>Value (€):</Form.Label>
+              <Form.Label>{t("section.asset.form.value")}</Form.Label>
               <Form.Control
                 type="number"
                 name="value"
@@ -30,7 +32,7 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate (%):</Form.Label>
+              <Form.Label>{t("section.asset.form.interest")}</Form.Label>
               <Form.Control
                 type="text"
                 name="interestRate"
@@ -39,7 +41,7 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="dateOfAcquirement">
-              <Form.Label>Date of Acquirement:</Form.Label>
+              <Form.Label>{t("section.asset.form.acquiringDate")}</Form.Label>
               <Form.Control
                 type="date"
                 name="dateOfAcquirement"
@@ -48,7 +50,7 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>{t("section.asset.form.description")}</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -62,10 +64,10 @@ const EditAssetForm = ({ show, asset, onHide, onChange, onSubmit }) => {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="secondary" onClick={onHide}>
-          Close
+          {t("section.asset.form.close")}
         </Button>
         <Button variant="primary" onClick={onSubmit}>
-          Save Changes
+          {t("section.asset.form.save")}
         </Button>
       </Modal.Footer>
     </Modal>

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createAsset } from '../../api/http-utils/assets';
 import {AddButton} from "../../components/add-button";
+import {useTranslation} from "react-i18next";
 
 const AddAssetForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
+  const {t} = useTranslation();
   const [values, setValues] = useState({
     name: '',
     description: '',
@@ -41,25 +43,25 @@ const AddAssetForm = ({ onSuccess }) => {
 
   return (
     <>
-      <AddButton onClick={handleShow} text={"Add an Asset"}/>
+      <AddButton onClick={handleShow} text={t("section.asset.form.addTitle")}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Add an Asset</Modal.Title>
+          <Modal.Title>{t("section.asset.form.addTitle")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="name">
-              <Form.Label>Name:</Form.Label>
+              <Form.Label>{t("section.asset.form.name")}</Form.Label>
               <Form.Control
                 type="text"
-                placeholder="Enter name"
+                placeholder={t("section.asset.form.namePlaceholder")}
                 name="name"
                 value={values.name}
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group controlId="value">
-              <Form.Label>Value (€):</Form.Label>
+              <Form.Label>{t("section.asset.form.value")}</Form.Label>
               <Form.Control
                 type="number"
                 name="value"
@@ -68,17 +70,17 @@ const AddAssetForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="interestRate">
-              <Form.Label>Interest Rate (%):</Form.Label>
+              <Form.Label>{t("section.asset.form.interest")}</Form.Label>
               <Form.Control
                 type="number"
-                placeholder="Enter interest rate"
+                placeholder={t("section.asset.form.interestPlaceholder")}
                 name="interestRate"
                 value={values.interestRate}
                 onChange={handleChange}
               />
             </Form.Group>
             <Form.Group controlId="dateOfAcquirement">
-              <Form.Label>Acquiring date:</Form.Label>
+              <Form.Label>{t("section.asset.form.acquiringDate")}</Form.Label>
               <Form.Control
                 type="date"
                 name="dateOfAcquirement"
@@ -87,7 +89,7 @@ const AddAssetForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>{t("section.asset.form.description")}</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -100,10 +102,10 @@ const AddAssetForm = ({ onSuccess }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("section.asset.form.close")}
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Add Asset
+            {t("section.asset.form.save")}
           </Button>
         </Modal.Footer>
       </Modal>

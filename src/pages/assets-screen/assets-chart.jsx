@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactApexChart from 'react-apexcharts';
+import {formatNumber} from "../../common/util";
+import {useTranslation} from "react-i18next";
 
 const AssetsChart = ({ assets }) => {
+  const {t} = useTranslation();
+
   const settings = {
     series: [{
-      name: 'Value (€) ',
+      name: t('section.asset.value'),
       data: assets.map(asset => asset.value)
     }],
     options: {
@@ -24,14 +28,14 @@ const AssetsChart = ({ assets }) => {
         categories: assets.map(asset => asset.name),
         labels: {
           formatter: function (value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+            return formatNumber(value, t('currency'));
           }
         }
       },
       yaxis: {
         labels: {
           formatter: function (value) {
-            return value.toLocaleString('en-US', { style: 'currency', currency: 'EUR' });
+            return formatNumber(value, t('currency'));
           }
         }
       },

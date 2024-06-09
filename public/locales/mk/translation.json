@@ -73,6 +73,30 @@
         "interest": "Стапка на Камата",
         "actions": "Акции"
       }
+    },
+    "asset": {
+      "title": "Средства",
+      "value": "Вредност (ден)",
+      "form": {
+        "addTitle": "Додади Средство",
+        "editTitle": "Измени Средство",
+        "name": "Име на Средство",
+        "namePlaceholder": "Внеси име",
+        "value": "Вредност (ден):",
+        "interest": "Стапка на Камата",
+        "interestPlaceholder": "Внеси каматна стапка",
+        "acquiringDate": "Датум на Стекнување:",
+        "description": "Опис:",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име",
+        "value": "Вредност",
+        "acquiringDate": "Датум на Стекнување",
+        "interest": "Стапка на Камата",
+        "actions": "Акции"
+      }
     }
   }
 }
