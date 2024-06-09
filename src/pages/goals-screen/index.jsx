@@ -5,9 +5,11 @@ import AddGoalForm from "./add-goal-form";
 import {fetchGoals} from "../../api/http-utils/goals";
 import {GoalsScatterChart} from "./charts/goals-scatter-chart";
 import {Col, Container, Row} from "react-bootstrap";
+import {useTranslation} from "react-i18next";
 
 export const GoalsScreen = () => {
   const [goals, setGoals] = useState([]);
+  const {t} = useTranslation();
 
   const fetchAndSetGoals = async () => {
     const data = await fetchGoals();
@@ -20,7 +22,7 @@ export const GoalsScreen = () => {
 
   return (
     <>
-      <h1>Goals</h1>
+      <h1>{t("section.goal.title")}</h1>
       <Container className="mt-2">
         <Row>
           <Col>

@@ -127,6 +127,40 @@
         "MONTHLY": "Месечно",
         "YEARLY": "Годишно"
       }
+    },
+    "goal": {
+      "title": "Цели",
+      "form": {
+        "addTitle": "Додади Цел",
+        "editTitle": "Уреди Цел",
+        "name": "Име на Целта",
+        "type": "Тип:",
+        "amount": "Износ: (ден):",
+        "dateOfOccurrence": "Датум на Остварување:",
+        "description": "Опис:",
+        "close": "Затвори",
+        "save": "Зачувај Промени"
+      },
+      "table": {
+        "name": "Име",
+        "amount": "Износ",
+        "dateOfOccurrence": "Датум на Остварување:",
+        "type": "Тип",
+        "actions": "Акции"
+      },
+      "type": {
+        "TRAVEL": "Патување",
+        "REALESTATE": "Недвижности",
+        "CAR": "Автомобил",
+        "EDUCATION": "Образование",
+        "RETIREMENT": "Пензија",
+        "HEALTH": "Здравје",
+        "INVESTMENT": "Инвестиција",
+        "BUSINESS": "Бизнис",
+        "FAMILY": "Семејство",
+        "CHARITY": "Добротворност",
+        "OTHER": "Друго"
+      }
     }
   }
 }

@@ -5,7 +5,8 @@ import {Image, OverlayTrigger, Tooltip} from "react-bootstrap";
 import EditGoalForm from "./edit-goal-form";
 import {DeleteButton} from "../../components/delete-button";
 import {EditButton} from "../../components/edit-button";
-import {goalTypeTexts} from "./constants";
+import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../common/util";
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -51,6 +52,7 @@ const StyledTableCell = styled.td`
 export const GoalsTable = ({goals, onSuccess}) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedGoal, setSelectedGoal] = useState(null);
+  const {t} = useTranslation();
 
   const handleDeleteGoal = useCallback(async (id) => {
     await deleteGoal(id)
@@ -91,11 +93,11 @@ export const GoalsTable = ({goals, onSuccess}) => {
       <StyledTable>
         <thead>
         <StyledTableRow>
-          <StyledTableHeader>Name</StyledTableHeader>
-          <StyledTableHeader>Amount</StyledTableHeader>
-          <StyledTableHeader>Date of Occurrence</StyledTableHeader>
-          <StyledTableHeader>Type</StyledTableHeader>
-          <StyledTableHeader>Actions</StyledTableHeader>
+          <StyledTableHeader>{t("section.goal.table.name")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.goal.table.amount")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.goal.table.dateOfOccurrence")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.goal.table.type")}</StyledTableHeader>
+          <StyledTableHeader>{t("section.goal.table.actions")}</StyledTableHeader>
         </StyledTableRow>
         </thead>
         <tbody>
@@ -109,9 +111,9 @@ export const GoalsTable = ({goals, onSuccess}) => {
                 </OverlayTrigger>
               }
             </StyledTableCell>
-            <StyledTableCell>{goal.amount} €</StyledTableCell>
+            <StyledTableCell>{formatNumber(goal.amount, t('currency'))}</StyledTableCell>
             <StyledTableCell>{formatDate(goal.dateOfOccurrence)}</StyledTableCell>
-            <StyledTableCell>{goalTypeTexts[goal.goalType]}</StyledTableCell>
+            <StyledTableCell>{t(`section.goal.type.${goal.goalType}`)}</StyledTableCell>
             <StyledTableCell>
               <EditButton onClick={() => handleEditGoal(goal)}/>
               <DeleteButton onClick={() => handleDeleteGoal(goal.id)}/>

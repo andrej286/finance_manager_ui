@@ -1,8 +1,11 @@
 import React, { useMemo } from 'react';
 import ReactApexChart from 'react-apexcharts';
-import {goalTypeTexts} from "../constants";
+import {useTranslation} from "react-i18next";
+import {formatNumber} from "../../../common/util";
 
 export const GoalsPieChart = ({ goals }) => {
+  const {t} = useTranslation();
+
   const calculatedTotalCostByType = useMemo(() => {
     const totalCostByType = {};
 
@@ -23,7 +26,14 @@ export const GoalsPieChart = ({ goals }) => {
       chart: {
         type: 'pie',
       },
-      labels: Object.keys(calculatedTotalCostByType).map(goalType => goalTypeTexts[goalType]),
+      labels: Object.keys(calculatedTotalCostByType).map(goalType => t(`section.goal.type.${goalType}`)),
+      tooltip: {
+        y: {
+          formatter: function (value) {
+            return formatNumber(value, t('currency'));
+          }
+        }
+      }
     },
   };
 

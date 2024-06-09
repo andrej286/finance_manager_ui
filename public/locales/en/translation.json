@@ -127,6 +127,40 @@
         "MONTHLY": "Monthly",
         "YEARLY": "Yearly"
       }
+    },
+    "goal": {
+      "title": "Goals",
+      "form": {
+        "addTitle": "Add an Goal",
+        "editTitle": "Edit Goal",
+        "name": "Name of Goal",
+        "type": "Type:",
+        "amount": "Amount: (€):",
+        "dateOfOccurrence": "Date of Occurrence:",
+        "description": "Description:",
+        "close": "Close",
+        "save": "Save Changes"
+      },
+      "table": {
+        "name": "Name",
+        "amount": "Amount",
+        "dateOfOccurrence": "Date of Occurrence:",
+        "type": "Type",
+        "actions": "Actions"
+      },
+      "type": {
+        "TRAVEL" : "Travel",
+        "REALESTATE": "Realestate",
+        "CAR": "Car",
+        "EDUCATION": "Education",
+        "RETIREMENT": "Retirement",
+        "HEALTH": "Health",
+        "INVESTMENT": "Investment",
+        "BUSINESS": "Business",
+        "FAMILY": "Family",
+        "CHARITY": "Charity",
+        "OTHER": "Other"
+      }
     }
   }
 }

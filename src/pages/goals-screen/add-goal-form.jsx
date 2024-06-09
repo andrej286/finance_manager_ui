@@ -2,11 +2,13 @@ import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import { createGoal } from '../../api/http-utils/goals';
 import {AddButton} from "../../components/add-button";
-import {goalTypes, goalTypeTexts, initialGoalFormState} from "./constants";
+import {goalTypes, initialGoalFormState} from "./constants";
+import {useTranslation} from "react-i18next";
 
 const AddGoalForm = ({ onSuccess }) => {
   const [show, setShow] = useState(false);
   const [values, setValues] = useState(initialGoalFormState);
+  const {t} = useTranslation();
 
   const handleClose = () => {
     setShow(false);
@@ -30,15 +32,15 @@ const AddGoalForm = ({ onSuccess }) => {
 
   return (
     <>
-      <AddButton onClick={handleShow} text={"Add a Goal"}/>
+      <AddButton onClick={handleShow} text={t("section.goal.form.addTitle")}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Goal form</Modal.Title>
+          <Modal.Title>{t("section.goal.form.addTitle")}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group controlId="name">
-              <Form.Label>Name of Goal</Form.Label>
+              <Form.Label>{t("section.goal.form.name")}</Form.Label>
               <Form.Control
                 type="text"
                 name="name"
@@ -47,7 +49,7 @@ const AddGoalForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="goalType">
-              <Form.Label>Type:</Form.Label>
+              <Form.Label>{t("section.goal.form.type")}</Form.Label>
               <Form.Control
                 as="select"
                 name="goalType"
@@ -56,13 +58,13 @@ const AddGoalForm = ({ onSuccess }) => {
               >
                 {goalTypes.map((type) => (
                   <option key={type} value={type}>
-                    {goalTypeTexts[type]}
+                    {t(`section.goal.type.${type}`)}
                   </option>
                 ))}
               </Form.Control>
             </Form.Group>
             <Form.Group controlId="amount">
-              <Form.Label>Amount:</Form.Label>
+              <Form.Label>{t("section.goal.form.amount")}</Form.Label>
               <Form.Control
                 type="number"
                 name="amount"
@@ -71,7 +73,7 @@ const AddGoalForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="dateOfOccurrence">
-              <Form.Label>Date of Occurrence:</Form.Label>
+              <Form.Label>{t("section.goal.form.dateOfOccurrence")}</Form.Label>
               <Form.Control
                 type="date"
                 name="dateOfOccurrence"
@@ -80,7 +82,7 @@ const AddGoalForm = ({ onSuccess }) => {
               />
             </Form.Group>
             <Form.Group controlId="description">
-              <Form.Label>Description:</Form.Label>
+              <Form.Label>{t("section.goal.form.description")}</Form.Label>
               <Form.Control
                 as="textarea"
                 rows={3}
@@ -93,10 +95,10 @@ const AddGoalForm = ({ onSuccess }) => {
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
-            Close
+            {t("section.goal.form.close")}
           </Button>
           <Button variant="primary" onClick={handleSubmit}>
-            Add Goal
+            {t("section.goal.form.save")}
           </Button>
         </Modal.Footer>
       </Modal>

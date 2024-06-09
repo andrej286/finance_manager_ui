@@ -20,17 +20,3 @@ export const initialGoalFormState = {
   dateOfOccurrence: '',
   description: '',
 }
-
-export const goalTypeTexts = {
-  'TRAVEL' : 'Travel',
-  'REALESTATE': 'Realestate',
-  'CAR': 'Car',
-  'EDUCATION': 'Education',
-  'RETIREMENT': 'Retirement',
-  'HEALTH': 'Health',
-  'INVESTMENT': 'Investment',
-  'BUSINESS': 'Business',
-  'FAMILY': 'Family',
-  'CHARITY': 'Charity',
-  'OTHER': 'Other'
-}
