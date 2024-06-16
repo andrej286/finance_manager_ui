@@ -65,8 +65,8 @@
         "terminationDate": "Termination Date:",
         "interest": "Interest Rate:",
         "interestPlaceholder": "Enter interest rate",
-        "close:": "Close",
-        "save:": "Save Changes"
+        "close": "Close",
+        "save": "Save Changes"
       },
       "table": {
         "name": "Name of Income",

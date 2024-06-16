@@ -32,13 +32,6 @@ const AssetsChart = ({ assets }) => {
           }
         }
       },
-      yaxis: {
-        labels: {
-          formatter: function (value) {
-            return formatNumber(value, t('currency'));
-          }
-        }
-      },
     },
   }
 
