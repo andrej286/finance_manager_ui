@@ -1,4 +1,4 @@
-export const calculateMonthlyValues = (incomes, startCapital) => {
+export const calculateMonthlyValues = (incomes, startCapital, averageCost) => {
   const monthlyTotal = Array(12).fill(0);
   const now = new Date();
   const currentMonth = now.getMonth();
@@ -26,6 +26,7 @@ export const calculateMonthlyValues = (incomes, startCapital) => {
 
   for (let month = 0; month < 12; month++) {
     monthlyTotal[month] += startCapital;
+    monthlyTotal[month] -= (averageCost * (month + 1));
   }
 
   return monthlyTotal;

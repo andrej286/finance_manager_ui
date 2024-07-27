@@ -33,6 +33,9 @@ const Capital = () => {
       type: 'bar',
       height: '100%'
     },
+    dataLabels: {
+      enabled: false
+    },
     xaxis: {
       categories: years.map(year => `${year}`)
     },

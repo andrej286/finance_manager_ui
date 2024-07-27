@@ -11,12 +11,13 @@ import {formatNumber} from "../../../common/util";
 export const Earnings = () => {
   const [incomes, setIncomes] = useState([]);
   const [startCapital, setStartCapital] = useState(0);
+  const [averageCost, setAverageCost] = useState(0);
   const {t} = useTranslation();
 
   const settings = {
     series: [{
       name: t("calculator.earnings.chart.seriesName"),
-      data: calculateMonthlyValues(incomes, startCapital)
+      data: calculateMonthlyValues(incomes, startCapital, averageCost)
     }],
     options: {
       chart: {
@@ -67,6 +68,11 @@ export const Earnings = () => {
     setStartCapital(parseInt(value))
   };
 
+  const handleAverageCostChange = ({target}) => {
+    const { value } = target;
+    setAverageCost(parseInt(value))
+  };
+
   const fetchAndSetIncome = async () => {
     const data = await fetchIncomes();
     setIncomes(data);
@@ -81,7 +87,7 @@ export const Earnings = () => {
       <div id="chart">
         <ReactApexChart options={settings.options} series={settings.series} type="line" height={350} />
       </div>
-      <InputGroup className="mb-3 w-25" >
+      <InputGroup className="mb-2 w-25" >
         <InputGroup.Text id="inputGroup-sizing-default">
           {t("calculator.earnings.startCapital")}
         </InputGroup.Text>
@@ -90,6 +96,18 @@ export const Earnings = () => {
           aria-describedby="inputGroup-sizing-default"
           value={startCapital}
           onChange={handleStartCapitalChange}
+          width={100}
+        />
+      </InputGroup>
+      <InputGroup className="mb-3 w-25" >
+        <InputGroup.Text id="inputGroup-sizing-default">
+          Set average monthly costs
+        </InputGroup.Text>
+        <Form.Control
+          aria-label="Default"
+          aria-describedby="inputGroup-sizing-default"
+          value={averageCost}
+          onChange={handleAverageCostChange}
           width={100}
         />
       </InputGroup>
